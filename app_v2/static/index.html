@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NIDS | Network Traffic Analysis</title>
+  <style>
+    :root{font-family:Inter,Segoe UI,Arial,sans-serif;color:#172033;background:#f4f7fb}
+    *{box-sizing:border-box}body{margin:0}header{background:#101c35;color:white;padding:24px 5vw}
+    header h1{margin:0 0 8px;font-size:clamp(23px,3vw,34px)}header p{margin:0;color:#cbd5e1}
+    main{max-width:1200px;margin:24px auto;padding:0 18px}
+    .notice{padding:14px 16px;border-radius:10px;background:#fff3d6;border:1px solid #f0d28a;color:#754b00;margin-bottom:18px}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+    .card{background:white;border:1px solid #e0e7f0;border-radius:14px;padding:20px;margin-bottom:16px;box-shadow:0 3px 12px #14213b0a}
+    .label{font-size:13px;color:#64748b}.value{font-size:28px;font-weight:750;margin-top:8px;overflow-wrap:anywhere}
+    button{background:#2456d6;color:white;border:0;border-radius:8px;padding:11px 16px;cursor:pointer;font-weight:650}
+    button:disabled{opacity:.55;cursor:wait}input{max-width:100%;margin:12px 0}
+    .muted{color:#64748b;font-size:13px}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#f8fafc;padding:12px;border-radius:8px}
+    table{border-collapse:collapse;width:100%;font-size:13px}td,th{text-align:left;padding:10px;border-bottom:1px solid #e2e8f0}
+    .scroll{overflow:auto}.status{font-weight:700}.good{color:#087443}.warn{color:#a15c00}
+  </style>
+</head>
+<body>
+<header>
+  <h1>Network Traffic Classification & Intrusion Detection</h1>
+  <p>CIC-IDS-2017 · Dataset-driven batch analysis prototype</p>
+</header>
+<main>
+  <div class="notice"><strong>Prototype limitation:</strong> Dataset replay / batch analysis — not live detection.
+    No compatible saved model was found, so uploaded rows are stored as <b>not scored</b>.
+    No predictions or detection claims are fabricated.</div>
+  <div class="grid">
+    <section class="card"><div class="label">Application status</div><div class="value" id="health">Checking…</div></section>
+    <section class="card"><div class="label">Upload runs</div><div class="value" id="runs">—</div></section>
+    <section class="card"><div class="label">Rows received (cumulative statistics include test uploads)</div><div class="value" id="received">—</div></section>
+    <section class="card"><div class="label">Rows scored</div><div class="value" id="scored">0</div></section>
+  </div>
+  <section class="card">
+    <h2>Upload flow CSV</h2>
+    <p class="muted">Uploads must use the cleaned format (same rules as feature_cleaned_v2); raw CIC files are not supported. Maximum 50,000 rows and 100 MB per upload.</p>
+    <input type="file" id="csv" accept=".csv">
+    <br><button id="upload">Validate and store CSV</button>
+    <p id="message" role="status"></p>
+  </section>
+  <section class="card">
+    <h2>Historical baseline metrics (Baseline v1, different model, 5-fold, likely optimistic)</h2>
+    <p class="muted">Baseline v1, different model, 5-fold, likely optimistic. Loaded from historical report; does not reflect replacement_v1.</p>
+    <pre id="metrics">Loading existing metrics…</pre>
+  </section>
+  <section class="card">
+    <h2>Recent uploaded rows</h2>
+    <div class="scroll"><table><thead><tr><th>Run ID</th><th>Row</th><th>Predicted class</th><th>Confidence</th><th>Status</th></tr></thead>
+    <tbody id="flows"><tr><td colspan="5">No uploads yet.</td></tr></tbody></table></div>
+  </section>
+</main>
+<script>
+async function api(path, options={}) {
+  const response = await fetch(path, options);
+  const data = await response.json().catch(() => ({}));
+  if (!response.ok) throw new Error(data.detail || `Request failed: ${response.status}`);
+  return data;
+}
+async function refresh() {
+  try {
+    const [health, summary, metrics, flows] = await Promise.all([
+      api('/health'), api('/summary'), api('/metrics'), api('/flows?limit=50')
+    ]);
+    document.querySelector('#health').textContent = health.status.toUpperCase();
+    document.querySelector('#health').className = 'value good';
+    document.querySelector('#runs').textContent = summary.runs;
+    document.querySelector('#received').textContent = summary.rows_received.toLocaleString();
+    document.querySelector('#scored').textContent = summary.rows_scored.toLocaleString();
+    document.querySelector('#metrics').textContent = metrics.available
+      ? JSON.stringify(metrics.data, null, 2)
+      : metrics.message;
+    document.querySelector('#flows').innerHTML = flows.items.length
+      ? flows.items.map(x => `<tr><td>${escapeHtml(x.run_id.slice(0,8))}</td><td>${x.row_id}</td><td>${x.predicted_class ?? '—'}</td><td>${x.confidence ?? '—'}</td><td class="warn">${x.not_scored ? 'Not scored' : 'Scored'}</td></tr>`).join('')
+      : '<tr><td colspan="5">No uploads yet.</td></tr>';
+  } catch (e) {
+    document.querySelector('#health').textContent = 'Unavailable';
+    document.querySelector('#message').textContent = e.message;
+  }
+}
+function escapeHtml(value) {
+  return String(value).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+document.querySelector('#upload').addEventListener('click', async () => {
+  const file = document.querySelector('#csv').files[0];
+  const message = document.querySelector('#message');
+  if (!file) { message.textContent = 'Choose a CSV file first.'; return; }
+  const button = document.querySelector('#upload');
+  button.disabled = true; message.textContent = 'Uploading and validating…';
+  try {
+    const form = new FormData(); form.append('file', file);
+    const result = await api('/score', {method:'POST', body:form});
+    message.textContent = `${result.message} Rows received: ${result.row_count.toLocaleString()}.`;
+    await refresh();
+  } catch (e) { message.textContent = e.message; }
+  finally { button.disabled = false; }
+});
+refresh();
+</script>
+</body>
+</html>

@@ -1,0 +1,4 @@
+feature,nonfinite_type,count_replaced_with_missing
+Flow Bytes/s,NaN,1358
+Flow Bytes/s,positive_infinity,1509
+Flow Packets/s,positive_infinity,2867

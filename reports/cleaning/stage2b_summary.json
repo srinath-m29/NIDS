@@ -1,0 +1,21 @@
+{
+  "stage": "2B",
+  "status": "DERIVED_DATA_CREATED_PENDING_REVIEW",
+  "raw_files": 8,
+  "raw_rows": 2830743,
+  "selected_features": 63,
+  "derived_columns": 66,
+  "nonfinite_values_replaced_with_empty": 5734,
+  "duplicate_header": "Fwd Header Length",
+  "retained_duplicate_column_index_zero_based": 34,
+  "excluded_duplicate_column_index_zero_based": 55,
+  "raw_labels_preserved_without_normalization": true,
+  "rows_deleted": 0,
+  "imputation_performed": false,
+  "deduplication_performed": false,
+  "train_test_split_performed": false,
+  "model_training_performed": false,
+  "raw_hashes_verified_before_and_after": true,
+  "output_directory": "C:\\Projects\\NIDS\\data\\processed\\cleaned_v1",
+  "manifest": "C:\\Projects\\NIDS\\reports\\cleaning\\stage2b_cleaning_manifest.csv"
+}

@@ -1,0 +1,67 @@
+{
+  "stage": "Stage 2A - Label Preparation",
+  "status": "PASS",
+  "source_directory": "C:\\Projects\\NIDS\\data\\processed\\cleaned_v1",
+  "output_directory": "C:\\Projects\\NIDS\\data\\processed\\label_prepared_v1",
+  "total_rows": 2830743,
+  "source_file_count": 8,
+  "class_count": 15,
+  "blank_label_rows": 0,
+  "encoding_damage_rows": 2180,
+  "labels_renamed": false,
+  "rows_deleted": 0,
+  "imputation_performed": false,
+  "model_training_performed": false,
+  "source_hashes_unchanged": true,
+  "files": [
+    {
+      "source_file": "Friday-WorkingHours-Afternoon-DDos.pcap_ISCX.cleaned.csv",
+      "output_file": "Friday-WorkingHours-Afternoon-DDos.pcap_ISCX.labelprep.csv",
+      "rows": 225745,
+      "output_sha256": "459dd17f6f2ab08f1cc66f2c64c8092178bc33506a82b8b871067d837661147a"
+    },
+    {
+      "source_file": "Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.cleaned.csv",
+      "output_file": "Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.labelprep.csv",
+      "rows": 286467,
+      "output_sha256": "4a3bbd90494ee38e49cbbb985ea967577f88f226f27314ec3038ff55a12ed849"
+    },
+    {
+      "source_file": "Friday-WorkingHours-Morning.pcap_ISCX.cleaned.csv",
+      "output_file": "Friday-WorkingHours-Morning.pcap_ISCX.labelprep.csv",
+      "rows": 191033,
+      "output_sha256": "a72f3425cb6d95110b274953e277f372f63613c8c86037d1a337bd52f5cfab52"
+    },
+    {
+      "source_file": "Monday-WorkingHours.pcap_ISCX.cleaned.csv",
+      "output_file": "Monday-WorkingHours.pcap_ISCX.labelprep.csv",
+      "rows": 529918,
+      "output_sha256": "d626ab851cd52ff2bb9671ce29b1d2a1023a97b85dddb05730e018f4bc63db90"
+    },
+    {
+      "source_file": "Thursday-WorkingHours-Afternoon-Infilteration.pcap_ISCX.cleaned.csv",
+      "output_file": "Thursday-WorkingHours-Afternoon-Infilteration.pcap_ISCX.labelprep.csv",
+      "rows": 288602,
+      "output_sha256": "f0dfb9f6845383635bbe8cb0362cbe4b6ae8c9a8a9c9b62b64fe4b8bb5b99f4d"
+    },
+    {
+      "source_file": "Thursday-WorkingHours-Morning-WebAttacks.pcap_ISCX.cleaned.csv",
+      "output_file": "Thursday-WorkingHours-Morning-WebAttacks.pcap_ISCX.labelprep.csv",
+      "rows": 170366,
+      "output_sha256": "6937e8bc2ede38f7f10ddafc0b5787f5c63f6565ae2e1c49c47847050032cf56"
+    },
+    {
+      "source_file": "Tuesday-WorkingHours.pcap_ISCX.cleaned.csv",
+      "output_file": "Tuesday-WorkingHours.pcap_ISCX.labelprep.csv",
+      "rows": 445909,
+      "output_sha256": "6579aed1e3e9eef1c11ed02998a16f78cb10bbb9b863170a3327d42e0d410a31"
+    },
+    {
+      "source_file": "Wednesday-workingHours.pcap_ISCX.cleaned.csv",
+      "output_file": "Wednesday-workingHours.pcap_ISCX.labelprep.csv",
+      "rows": 692703,
+      "output_sha256": "389af766779dac7536c5f7cc05ff4f51153c1e2032fc41693574a87cb0ec8170"
+    }
+  ],
+  "errors": []
+}

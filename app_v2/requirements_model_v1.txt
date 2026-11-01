@@ -1,0 +1,8 @@
+# Historical model v1 environment requirements
+fastapi>=0.115.0
+uvicorn[standard]>=0.30.0
+pandas>=2.2.0
+python-multipart>=0.0.9
+xgboost>=2.1.0
+scikit-learn>=1.5.0
+scapy>=2.6.0

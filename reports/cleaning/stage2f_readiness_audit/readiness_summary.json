@@ -1,0 +1,629 @@
+{
+  "stage": "2F",
+  "purpose": "Readiness audit only; no imputation or training",
+  "total_rows": 2830743,
+  "files": [
+    {
+      "file": "Friday-WorkingHours-Afternoon-DDos.pcap_ISCX.cleanv2.csv",
+      "rows": 225745
+    },
+    {
+      "file": "Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.cleanv2.csv",
+      "rows": 286467
+    },
+    {
+      "file": "Friday-WorkingHours-Morning.pcap_ISCX.cleanv2.csv",
+      "rows": 191033
+    },
+    {
+      "file": "Monday-WorkingHours.pcap_ISCX.cleanv2.csv",
+      "rows": 529918
+    },
+    {
+      "file": "Thursday-WorkingHours-Afternoon-Infilteration.pcap_ISCX.cleanv2.csv",
+      "rows": 288602
+    },
+    {
+      "file": "Thursday-WorkingHours-Morning-WebAttacks.pcap_ISCX.cleanv2.csv",
+      "rows": 170366
+    },
+    {
+      "file": "Tuesday-WorkingHours.pcap_ISCX.cleanv2.csv",
+      "rows": 445909
+    },
+    {
+      "file": "Wednesday-workingHours.pcap_ISCX.cleanv2.csv",
+      "rows": 692703
+    }
+  ],
+  "class_counts": {
+    "BENIGN": 2273097,
+    "DoS Hulk": 231073,
+    "PortScan": 158930,
+    "DDoS": 128027,
+    "DoS GoldenEye": 10293,
+    "FTP-Patator": 7938,
+    "SSH-Patator": 5897,
+    "DoS slowloris": 5796,
+    "DoS Slowhttptest": 5499,
+    "Bot": 1966,
+    "Web Attack \ufffd Brute Force": 1507,
+    "Web Attack \ufffd XSS": 652,
+    "Infiltration": 36,
+    "Web Attack \ufffd Sql Injection": 21,
+    "Heartbleed": 11
+  },
+  "number_of_classes": 15,
+  "features": {
+    "Destination Port": {
+      "rows": 2830743,
+      "missing": 0,
+      "missing_percent": 0.0,
+      "non_numeric_or_non_finite": 0,
+      "min_observed": 0.0,
+      "max_observed": 65535.0,
+      "entirely_missing": false
+    },
+    "Flow Duration": {
+      "rows": 2830743,
+      "missing": 115,
+      "missing_percent": 0.004063,
+      "non_numeric_or_non_finite": 0,
+      "min_observed": 0.0,
+      "max_observed": 119999998.0,
+      "entirely_missing": false
+    },
+    "Total Fwd Packets": {
+      "rows": 2830743,
+      "missing": 0,
+      "missing_percent": 0.0,
+      "non_numeric_or_non_finite": 0,
+      "min_observed": 1.0,
+      "max_observed": 219759.0,
+      "entirely_missing": false
+    },
+    "Total Backward Packets": {
+      "rows": 2830743,
+      "missing": 0,
+      "missing_percent": 0.0,
+      "non_numeric_or_non_finite": 0,
+      "min_observed": 0.0,
+      "max_observed": 291922.0,
+      "entirely_missing": false
+    },
+    "Total Length of Fwd Packets": {
+      "rows": 2830743,
+      "missing": 0,
+      "missing_percent": 0.0,
+      "non_numeric_or_non_finite": 0,
+      "min_observed": 0.0,
+      "max_observed": 12900000.0,
+      "entirely_missing": false
+    },
+    "Total Length of Bwd Packets": {
+      "rows": 2830743,
+      "missing": 0,
+      "missing_percent": 0.0,
+      "non_numeric_or_non_finite": 0,
+      "min_observed": 0.0,
+      "max_observed": 655453030.0,
+      "entirely_missing": false
+    },
+    "Fwd Packet Length Max": {
+      "rows": 2830743,
+      "missing": 0,
+      "missing_percent": 0.0,
+      "non_numeric_or_non_finite": 0,
+      "min_observed": 0.0,
+      "max_observed": 24820.0,
+      "entirely_missing": false
+    },
+    "Fwd Packet Length Min": {
+      "rows": 2830743,
+      "missing": 0,
+      "missing_percent": 0.0,
+      "non_numeric_or_non_finite": 0,
+      "min_observed": 0.0,
+      "max_observed": 2325.0,
+      "entirely_missing": false
+    },
+    "Fwd Packet Length Mean": {
+      "rows": 2830743,
+      "missing": 0,
+      "missing_percent": 0.0,
+      "non_numeric_or_non_finite": 0,
+      "min_observed": 0.0,
+      "max_observed": 5940.857143,
+      "entirely_missing": false
+    },
+    "Fwd Packet Length Std": {
+      "rows": 2830743,
+      "missing": 0,
+      "missing_percent": 0.0,
+      "non_numeric_or_non_finite": 0,
+      "min_observed": 0.0,
+      "max_observed": 7125.5968458437,
+      "entirely_missing": false
+    },
+    "Bwd Packet Length Max": {
+      "rows": 2830743,
+      "missing": 0,
+      "missing_percent": 0.0,
+      "non_numeric_or_non_finite": 0,
+      "min_observed": 0.0,
+      "max_observed": 19530.0,
+      "entirely_missing": false
+    },
+    "Bwd Packet Length Min": {
+      "rows": 2830743,
+      "missing": 0,
+      "missing_percent": 0.0,
+      "non_numeric_or_non_finite": 0,
+      "min_observed": 0.0,
+      "max_observed": 2896.0,
+      "entirely_missing": false
+    },
+    "Bwd Packet Length Mean": {
+      "rows": 2830743,
+      "missing": 0,
+      "missing_percent": 0.0,
+      "non_numeric_or_non_finite": 0,
+      "min_observed": 0.0,
+      "max_observed": 5800.5,
+      "entirely_missing": false
+    },
+    "Bwd Packet Length Std": {
+      "rows": 2830743,
+      "missing": 0,
+      "missing_percent": 0.0,
+      "non_numeric_or_non_finite": 0,
+      "min_observed": 0.0,
+      "max_observed": 8194.660487,
+      "entirely_missing": false
+    },
+    "Flow Bytes/s": {
+      "rows": 2830743,
+      "missing": 2952,
+      "missing_percent": 0.104284,
+      "non_numeric_or_non_finite": 0,
+      "min_observed": 0.0,
+      "max_observed": 2071000000.0,
+      "entirely_missing": false
+    },
+    "Flow Packets/s": {
+      "rows": 2830743,
+      "missing": 2982,
+      "missing_percent": 0.105343,
+      "non_numeric_or_non_finite": 0,
+      "min_observed": 0.016701329,
+      "max_observed": 4000000.0,
+      "entirely_missing": false
+    },
+    "Flow IAT Mean": {
+      "rows": 2830743,
+      "missing": 115,
+      "missing_percent": 0.004063,
+      "non_numeric_or_non_finite": 0,
+      "min_observed": 0.0,
+      "max_observed": 120000000.0,
+      "entirely_missing": false
+    },
+    "Flow IAT Std": {
+      "rows": 2830743,
+      "missing": 0,
+      "missing_percent": 0.0,
+      "non_numeric_or_non_finite": 0,
+      "min_observed": 0.0,
+      "max_observed": 84800261.5664079,
+      "entirely_missing": false
+    },
+    "Flow IAT Max": {
+      "rows": 2830743,
+      "missing": 115,
+      "missing_percent": 0.004063,
+      "non_numeric_or_non_finite": 0,
+      "min_observed": 0.0,
+      "max_observed": 120000000.0,
+      "entirely_missing": false
+    },
+    "Flow IAT Min": {
+      "rows": 2830743,
+      "missing": 2891,
+      "missing_percent": 0.102129,
+      "non_numeric_or_non_finite": 0,
+      "min_observed": 0.0,
+      "max_observed": 120000000.0,
+      "entirely_missing": false
+    },
+    "Fwd IAT Total": {
+      "rows": 2830743,
+      "missing": 0,
+      "missing_percent": 0.0,
+      "non_numeric_or_non_finite": 0,
+      "min_observed": 0.0,
+      "max_observed": 120000000.0,
+      "entirely_missing": false
+    },
+    "Fwd IAT Mean": {
+      "rows": 2830743,
+      "missing": 0,
+      "missing_percent": 0.0,
+      "non_numeric_or_non_finite": 0,
+      "min_observed": 0.0,
+      "max_observed": 120000000.0,
+      "entirely_missing": false
+    },
+    "Fwd IAT Std": {
+      "rows": 2830743,
+      "missing": 0,
+      "missing_percent": 0.0,
+      "non_numeric_or_non_finite": 0,
+      "min_observed": 0.0,
+      "max_observed": 84602929.2769822,
+      "entirely_missing": false
+    },
+    "Fwd IAT Max": {
+      "rows": 2830743,
+      "missing": 0,
+      "missing_percent": 0.0,
+      "non_numeric_or_non_finite": 0,
+      "min_observed": 0.0,
+      "max_observed": 120000000.0,
+      "entirely_missing": false
+    },
+    "Fwd IAT Min": {
+      "rows": 2830743,
+      "missing": 17,
+      "missing_percent": 0.000601,
+      "non_numeric_or_non_finite": 0,
+      "min_observed": 0.0,
+      "max_observed": 120000000.0,
+      "entirely_missing": false
+    },
+    "Bwd IAT Total": {
+      "rows": 2830743,
+      "missing": 0,
+      "missing_percent": 0.0,
+      "non_numeric_or_non_finite": 0,
+      "min_observed": 0.0,
+      "max_observed": 120000000.0,
+      "entirely_missing": false
+    },
+    "Bwd IAT Mean": {
+      "rows": 2830743,
+      "missing": 0,
+      "missing_percent": 0.0,
+      "non_numeric_or_non_finite": 0,
+      "min_observed": 0.0,
+      "max_observed": 120000000.0,
+      "entirely_missing": false
+    },
+    "Bwd IAT Std": {
+      "rows": 2830743,
+      "missing": 0,
+      "missing_percent": 0.0,
+      "non_numeric_or_non_finite": 0,
+      "min_observed": 0.0,
+      "max_observed": 84418013.7826341,
+      "entirely_missing": false
+    },
+    "Bwd IAT Max": {
+      "rows": 2830743,
+      "missing": 0,
+      "missing_percent": 0.0,
+      "non_numeric_or_non_finite": 0,
+      "min_observed": 0.0,
+      "max_observed": 120000000.0,
+      "entirely_missing": false
+    },
+    "Bwd IAT Min": {
+      "rows": 2830743,
+      "missing": 0,
+      "missing_percent": 0.0,
+      "non_numeric_or_non_finite": 0,
+      "min_observed": 0.0,
+      "max_observed": 120000000.0,
+      "entirely_missing": false
+    },
+    "Fwd PSH Flags": {
+      "rows": 2830743,
+      "missing": 0,
+      "missing_percent": 0.0,
+      "non_numeric_or_non_finite": 0,
+      "min_observed": 0.0,
+      "max_observed": 1.0,
+      "entirely_missing": false
+    },
+    "Fwd URG Flags": {
+      "rows": 2830743,
+      "missing": 0,
+      "missing_percent": 0.0,
+      "non_numeric_or_non_finite": 0,
+      "min_observed": 0.0,
+      "max_observed": 1.0,
+      "entirely_missing": false
+    },
+    "Fwd Header Length": {
+      "rows": 2830743,
+      "missing": 35,
+      "missing_percent": 0.001236,
+      "non_numeric_or_non_finite": 0,
+      "min_observed": 0.0,
+      "max_observed": 4644908.0,
+      "entirely_missing": false
+    },
+    "Bwd Header Length": {
+      "rows": 2830743,
+      "missing": 22,
+      "missing_percent": 0.000777,
+      "non_numeric_or_non_finite": 0,
+      "min_observed": 0.0,
+      "max_observed": 5838440.0,
+      "entirely_missing": false
+    },
+    "Fwd Packets/s": {
+      "rows": 2830743,
+      "missing": 0,
+      "missing_percent": 0.0,
+      "non_numeric_or_non_finite": 0,
+      "min_observed": 0.0,
+      "max_observed": 3000000.0,
+      "entirely_missing": false
+    },
+    "Bwd Packets/s": {
+      "rows": 2830743,
+      "missing": 0,
+      "missing_percent": 0.0,
+      "non_numeric_or_non_finite": 0,
+      "min_observed": 0.0,
+      "max_observed": 2000000.0,
+      "entirely_missing": false
+    },
+    "Min Packet Length": {
+      "rows": 2830743,
+      "missing": 0,
+      "missing_percent": 0.0,
+      "non_numeric_or_non_finite": 0,
+      "min_observed": 0.0,
+      "max_observed": 1448.0,
+      "entirely_missing": false
+    },
+    "Max Packet Length": {
+      "rows": 2830743,
+      "missing": 0,
+      "missing_percent": 0.0,
+      "non_numeric_or_non_finite": 0,
+      "min_observed": 0.0,
+      "max_observed": 24820.0,
+      "entirely_missing": false
+    },
+    "Packet Length Mean": {
+      "rows": 2830743,
+      "missing": 0,
+      "missing_percent": 0.0,
+      "non_numeric_or_non_finite": 0,
+      "min_observed": 0.0,
+      "max_observed": 3337.142857,
+      "entirely_missing": false
+    },
+    "Packet Length Std": {
+      "rows": 2830743,
+      "missing": 0,
+      "missing_percent": 0.0,
+      "non_numeric_or_non_finite": 0,
+      "min_observed": 0.0,
+      "max_observed": 4731.522394,
+      "entirely_missing": false
+    },
+    "Packet Length Variance": {
+      "rows": 2830743,
+      "missing": 0,
+      "missing_percent": 0.0,
+      "non_numeric_or_non_finite": 0,
+      "min_observed": 0.0,
+      "max_observed": 22400000.0,
+      "entirely_missing": false
+    },
+    "FIN Flag Count": {
+      "rows": 2830743,
+      "missing": 0,
+      "missing_percent": 0.0,
+      "non_numeric_or_non_finite": 0,
+      "min_observed": 0.0,
+      "max_observed": 1.0,
+      "entirely_missing": false
+    },
+    "SYN Flag Count": {
+      "rows": 2830743,
+      "missing": 0,
+      "missing_percent": 0.0,
+      "non_numeric_or_non_finite": 0,
+      "min_observed": 0.0,
+      "max_observed": 1.0,
+      "entirely_missing": false
+    },
+    "RST Flag Count": {
+      "rows": 2830743,
+      "missing": 0,
+      "missing_percent": 0.0,
+      "non_numeric_or_non_finite": 0,
+      "min_observed": 0.0,
+      "max_observed": 1.0,
+      "entirely_missing": false
+    },
+    "PSH Flag Count": {
+      "rows": 2830743,
+      "missing": 0,
+      "missing_percent": 0.0,
+      "non_numeric_or_non_finite": 0,
+      "min_observed": 0.0,
+      "max_observed": 1.0,
+      "entirely_missing": false
+    },
+    "ACK Flag Count": {
+      "rows": 2830743,
+      "missing": 0,
+      "missing_percent": 0.0,
+      "non_numeric_or_non_finite": 0,
+      "min_observed": 0.0,
+      "max_observed": 1.0,
+      "entirely_missing": false
+    },
+    "URG Flag Count": {
+      "rows": 2830743,
+      "missing": 0,
+      "missing_percent": 0.0,
+      "non_numeric_or_non_finite": 0,
+      "min_observed": 0.0,
+      "max_observed": 1.0,
+      "entirely_missing": false
+    },
+    "CWE Flag Count": {
+      "rows": 2830743,
+      "missing": 0,
+      "missing_percent": 0.0,
+      "non_numeric_or_non_finite": 0,
+      "min_observed": 0.0,
+      "max_observed": 1.0,
+      "entirely_missing": false
+    },
+    "ECE Flag Count": {
+      "rows": 2830743,
+      "missing": 0,
+      "missing_percent": 0.0,
+      "non_numeric_or_non_finite": 0,
+      "min_observed": 0.0,
+      "max_observed": 1.0,
+      "entirely_missing": false
+    },
+    "Down/Up Ratio": {
+      "rows": 2830743,
+      "missing": 0,
+      "missing_percent": 0.0,
+      "non_numeric_or_non_finite": 0,
+      "min_observed": 0.0,
+      "max_observed": 156.0,
+      "entirely_missing": false
+    },
+    "Average Packet Size": {
+      "rows": 2830743,
+      "missing": 0,
+      "missing_percent": 0.0,
+      "non_numeric_or_non_finite": 0,
+      "min_observed": 0.0,
+      "max_observed": 3893.333333,
+      "entirely_missing": false
+    },
+    "Init_Win_bytes_forward": {
+      "rows": 2830743,
+      "missing": 1001189,
+      "missing_percent": 35.368417,
+      "non_numeric_or_non_finite": 0,
+      "min_observed": 0.0,
+      "max_observed": 65535.0,
+      "entirely_missing": false
+    },
+    "Init_Win_bytes_backward": {
+      "rows": 2830743,
+      "missing": 1441552,
+      "missing_percent": 50.924863,
+      "non_numeric_or_non_finite": 0,
+      "min_observed": 0.0,
+      "max_observed": 65535.0,
+      "entirely_missing": false
+    },
+    "act_data_pkt_fwd": {
+      "rows": 2830743,
+      "missing": 0,
+      "missing_percent": 0.0,
+      "non_numeric_or_non_finite": 0,
+      "min_observed": 0.0,
+      "max_observed": 213557.0,
+      "entirely_missing": false
+    },
+    "min_seg_size_forward": {
+      "rows": 2830743,
+      "missing": 35,
+      "missing_percent": 0.001236,
+      "non_numeric_or_non_finite": 0,
+      "min_observed": 0.0,
+      "max_observed": 138.0,
+      "entirely_missing": false
+    },
+    "Active Mean": {
+      "rows": 2830743,
+      "missing": 0,
+      "missing_percent": 0.0,
+      "non_numeric_or_non_finite": 0,
+      "min_observed": 0.0,
+      "max_observed": 110000000.0,
+      "entirely_missing": false
+    },
+    "Active Std": {
+      "rows": 2830743,
+      "missing": 0,
+      "missing_percent": 0.0,
+      "non_numeric_or_non_finite": 0,
+      "min_observed": 0.0,
+      "max_observed": 74200000.0,
+      "entirely_missing": false
+    },
+    "Active Max": {
+      "rows": 2830743,
+      "missing": 0,
+      "missing_percent": 0.0,
+      "non_numeric_or_non_finite": 0,
+      "min_observed": 0.0,
+      "max_observed": 110000000.0,
+      "entirely_missing": false
+    },
+    "Active Min": {
+      "rows": 2830743,
+      "missing": 0,
+      "missing_percent": 0.0,
+      "non_numeric_or_non_finite": 0,
+      "min_observed": 0.0,
+      "max_observed": 110000000.0,
+      "entirely_missing": false
+    },
+    "Idle Mean": {
+      "rows": 2830743,
+      "missing": 0,
+      "missing_percent": 0.0,
+      "non_numeric_or_non_finite": 0,
+      "min_observed": 0.0,
+      "max_observed": 120000000.0,
+      "entirely_missing": false
+    },
+    "Idle Std": {
+      "rows": 2830743,
+      "missing": 0,
+      "missing_percent": 0.0,
+      "non_numeric_or_non_finite": 0,
+      "min_observed": 0.0,
+      "max_observed": 76900000.0,
+      "entirely_missing": false
+    },
+    "Idle Max": {
+      "rows": 2830743,
+      "missing": 0,
+      "missing_percent": 0.0,
+      "non_numeric_or_non_finite": 0,
+      "min_observed": 0.0,
+      "max_observed": 120000000.0,
+      "entirely_missing": false
+    },
+    "Idle Min": {
+      "rows": 2830743,
+      "missing": 0,
+      "missing_percent": 0.0,
+      "non_numeric_or_non_finite": 0,
+      "min_observed": 0.0,
+      "max_observed": 120000000.0,
+      "entirely_missing": false
+    }
+  },
+  "features_with_missing_values": 12,
+  "entirely_missing_features": [],
+  "features_with_non_numeric_or_non_finite_values": []
+}

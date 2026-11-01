@@ -1,0 +1,2 @@
+# NIDS app_v2 runtime dependencies (FastAPI backend + ML inference + live capture)
+-r ../requirements.txt

@@ -1,0 +1,280 @@
+feature,value,raw_value,raw_label,source_file,source_row
+Flow IAT Min,-1,-1,BENIGN,Friday-WorkingHours-Afternoon-DDos.pcap_ISCX.csv,184
+Flow IAT Min,-1,-1,BENIGN,Friday-WorkingHours-Afternoon-DDos.pcap_ISCX.csv,282
+Flow IAT Min,-1,-1,BENIGN,Friday-WorkingHours-Afternoon-DDos.pcap_ISCX.csv,359
+Flow IAT Min,-1,-1,BENIGN,Friday-WorkingHours-Afternoon-DDos.pcap_ISCX.csv,1434
+Flow IAT Min,-1,-1,BENIGN,Friday-WorkingHours-Afternoon-DDos.pcap_ISCX.csv,2643
+Flow IAT Min,-1,-1,BENIGN,Friday-WorkingHours-Afternoon-DDos.pcap_ISCX.csv,2651
+Flow IAT Min,-1,-1,BENIGN,Friday-WorkingHours-Afternoon-DDos.pcap_ISCX.csv,2658
+Flow IAT Min,-1,-1,BENIGN,Friday-WorkingHours-Afternoon-DDos.pcap_ISCX.csv,7144
+Flow IAT Min,-1,-1,BENIGN,Friday-WorkingHours-Afternoon-DDos.pcap_ISCX.csv,7692
+Flow IAT Min,-1,-1,BENIGN,Friday-WorkingHours-Afternoon-DDos.pcap_ISCX.csv,11765
+Flow IAT Min,-1,-1,BENIGN,Friday-WorkingHours-Afternoon-DDos.pcap_ISCX.csv,12276
+Flow IAT Min,-1,-1,BENIGN,Friday-WorkingHours-Afternoon-DDos.pcap_ISCX.csv,13772
+Flow IAT Min,-1,-1,BENIGN,Friday-WorkingHours-Afternoon-DDos.pcap_ISCX.csv,15494
+Flow IAT Min,-1,-1,BENIGN,Friday-WorkingHours-Afternoon-DDos.pcap_ISCX.csv,16324
+Flow IAT Min,-1,-1,BENIGN,Friday-WorkingHours-Afternoon-DDos.pcap_ISCX.csv,17942
+Flow IAT Min,-1,-1,BENIGN,Friday-WorkingHours-Afternoon-DDos.pcap_ISCX.csv,22448
+Flow IAT Min,-1,-1,BENIGN,Friday-WorkingHours-Afternoon-DDos.pcap_ISCX.csv,31534
+Flow IAT Min,-1,-1,BENIGN,Friday-WorkingHours-Afternoon-DDos.pcap_ISCX.csv,31547
+Flow IAT Min,-1,-1,BENIGN,Friday-WorkingHours-Afternoon-DDos.pcap_ISCX.csv,31605
+Flow IAT Min,-1,-1,BENIGN,Friday-WorkingHours-Afternoon-DDos.pcap_ISCX.csv,31702
+Flow IAT Min,-1,-1,BENIGN,Friday-WorkingHours-Afternoon-DDos.pcap_ISCX.csv,32398
+Flow IAT Min,-1,-1,DDoS,Friday-WorkingHours-Afternoon-DDos.pcap_ISCX.csv,37322
+Flow IAT Min,-1,-1,BENIGN,Friday-WorkingHours-Afternoon-DDos.pcap_ISCX.csv,39966
+Flow IAT Min,-1,-1,BENIGN,Friday-WorkingHours-Afternoon-DDos.pcap_ISCX.csv,40232
+Flow IAT Min,-1,-1,BENIGN,Friday-WorkingHours-Afternoon-DDos.pcap_ISCX.csv,40234
+Flow IAT Min,-1,-1,BENIGN,Friday-WorkingHours-Afternoon-DDos.pcap_ISCX.csv,42111
+Flow IAT Min,-1,-1,BENIGN,Friday-WorkingHours-Afternoon-DDos.pcap_ISCX.csv,42652
+Flow IAT Min,-1,-1,BENIGN,Friday-WorkingHours-Afternoon-DDos.pcap_ISCX.csv,42913
+Flow IAT Min,-1,-1,BENIGN,Friday-WorkingHours-Afternoon-DDos.pcap_ISCX.csv,51235
+Flow IAT Min,-1,-1,BENIGN,Friday-WorkingHours-Afternoon-DDos.pcap_ISCX.csv,51273
+Fwd IAT Min,-12,-12,DDoS,Friday-WorkingHours-Afternoon-DDos.pcap_ISCX.csv,96830
+Fwd IAT Min,-1,-1,DDoS,Friday-WorkingHours-Afternoon-DDos.pcap_ISCX.csv,134069
+Fwd IAT Min,-1,-1,DDoS,Friday-WorkingHours-Afternoon-DDos.pcap_ISCX.csv,141134
+Fwd IAT Min,-1,-1,DDoS,Friday-WorkingHours-Afternoon-DDos.pcap_ISCX.csv,142910
+Fwd IAT Min,-1,-1,DDoS,Friday-WorkingHours-Afternoon-DDos.pcap_ISCX.csv,160958
+Fwd IAT Min,-1,-1,DDoS,Friday-WorkingHours-Afternoon-DDos.pcap_ISCX.csv,178261
+Flow Duration,-1,-1,BENIGN,Friday-WorkingHours-Afternoon-DDos.pcap_ISCX.csv,200992
+Flow IAT Mean,-1,-1,BENIGN,Friday-WorkingHours-Afternoon-DDos.pcap_ISCX.csv,200992
+Flow IAT Max,-1,-1,BENIGN,Friday-WorkingHours-Afternoon-DDos.pcap_ISCX.csv,200992
+Flow Bytes/s,-12000000,-12000000,BENIGN,Friday-WorkingHours-Afternoon-DDos.pcap_ISCX.csv,200992
+Flow Packets/s,-2000000,-2000000,BENIGN,Friday-WorkingHours-Afternoon-DDos.pcap_ISCX.csv,200992
+Flow Duration,-1,-1,BENIGN,Friday-WorkingHours-Afternoon-DDos.pcap_ISCX.csv,224101
+Flow IAT Mean,-1,-1,BENIGN,Friday-WorkingHours-Afternoon-DDos.pcap_ISCX.csv,224101
+Flow IAT Max,-1,-1,BENIGN,Friday-WorkingHours-Afternoon-DDos.pcap_ISCX.csv,224101
+Flow Bytes/s,-12000000,-12000000,BENIGN,Friday-WorkingHours-Afternoon-DDos.pcap_ISCX.csv,224101
+Flow Packets/s,-2000000,-2000000,BENIGN,Friday-WorkingHours-Afternoon-DDos.pcap_ISCX.csv,224101
+Flow Duration,-1,-1,BENIGN,Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv,47879
+Flow IAT Mean,-1,-1,BENIGN,Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv,47879
+Flow IAT Max,-1,-1,BENIGN,Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv,47879
+Flow Bytes/s,-12000000,-12000000,BENIGN,Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv,47879
+Flow Packets/s,-2000000,-2000000,BENIGN,Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv,47879
+Flow Duration,-1,-1,BENIGN,Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv,61032
+Flow IAT Mean,-1,-1,BENIGN,Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv,61032
+Flow IAT Max,-1,-1,BENIGN,Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv,61032
+Flow Bytes/s,-193000000,-193000000,BENIGN,Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv,61032
+Flow Packets/s,-2000000,-2000000,BENIGN,Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv,61032
+Flow Duration,-1,-1,BENIGN,Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv,61928
+Flow IAT Mean,-1,-1,BENIGN,Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv,61928
+Flow IAT Max,-1,-1,BENIGN,Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv,61928
+Flow Bytes/s,-12000000,-12000000,BENIGN,Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv,61928
+Flow Packets/s,-2000000,-2000000,BENIGN,Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv,61928
+Flow Duration,-1,-1,BENIGN,Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv,86738
+Flow IAT Mean,-1,-1,BENIGN,Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv,86738
+Flow IAT Max,-1,-1,BENIGN,Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv,86738
+Flow Bytes/s,-12000000,-12000000,BENIGN,Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv,86738
+Flow Packets/s,-2000000,-2000000,BENIGN,Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv,86738
+Flow Duration,-1,-1,BENIGN,Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv,90373
+Flow IAT Mean,-1,-1,BENIGN,Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv,90373
+Flow IAT Max,-1,-1,BENIGN,Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv,90373
+Flow Bytes/s,-8000000,-8000000,BENIGN,Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv,90373
+Flow Packets/s,-2000000,-2000000,BENIGN,Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv,90373
+Flow Duration,-1,-1,BENIGN,Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv,90966
+Flow IAT Mean,-1,-1,BENIGN,Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv,90966
+Flow IAT Max,-1,-1,BENIGN,Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv,90966
+Flow Bytes/s,-8000000,-8000000,BENIGN,Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv,90966
+Flow Packets/s,-2000000,-2000000,BENIGN,Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv,90966
+Flow Duration,-1,-1,BENIGN,Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv,98623
+Flow IAT Mean,-1,-1,BENIGN,Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv,98623
+Flow IAT Max,-1,-1,BENIGN,Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv,98623
+Flow Bytes/s,-8000000,-8000000,BENIGN,Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv,98623
+Flow Packets/s,-2000000,-2000000,BENIGN,Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv,98623
+Flow Duration,-1,-1,BENIGN,Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv,100589
+Flow IAT Mean,-1,-1,BENIGN,Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv,100589
+Flow IAT Max,-1,-1,BENIGN,Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv,100589
+Flow Bytes/s,-8000000,-8000000,BENIGN,Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv,100589
+Flow Packets/s,-2000000,-2000000,BENIGN,Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv,100589
+Flow Duration,-1,-1,BENIGN,Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv,103292
+Flow IAT Mean,-1,-1,BENIGN,Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv,103292
+Flow IAT Max,-1,-1,BENIGN,Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv,103292
+Flow Bytes/s,-8000000,-8000000,BENIGN,Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv,103292
+Flow Packets/s,-2000000,-2000000,BENIGN,Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv,103292
+Flow Duration,-12,-12,BENIGN,Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv,107387
+Flow IAT Mean,-12,-12,BENIGN,Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv,107387
+Flow IAT Max,-12,-12,BENIGN,Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv,107387
+Flow Bytes/s,-666666.6667,-666666.6667,BENIGN,Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv,107387
+Flow Packets/s,-166666.6667,-166666.6667,BENIGN,Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv,107387
+Flow Duration,-1,-1,BENIGN,Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv,109287
+Flow IAT Mean,-1,-1,BENIGN,Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv,109287
+Flow IAT Max,-1,-1,BENIGN,Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv,109287
+Flow Bytes/s,-8000000,-8000000,BENIGN,Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv,109287
+Flow Packets/s,-2000000,-2000000,BENIGN,Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv,109287
+Flow Duration,-1,-1,BENIGN,Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv,114328
+Flow IAT Mean,-1,-1,BENIGN,Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv,114328
+Flow IAT Max,-1,-1,BENIGN,Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv,114328
+Flow Bytes/s,-8000000,-8000000,BENIGN,Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv,114328
+Flow Packets/s,-2000000,-2000000,BENIGN,Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv,114328
+Flow Duration,-1,-1,BENIGN,Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv,118494
+Flow IAT Mean,-1,-1,BENIGN,Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv,118494
+Flow IAT Max,-1,-1,BENIGN,Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv,118494
+Flow Bytes/s,-8000000,-8000000,BENIGN,Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv,118494
+Flow Packets/s,-2000000,-2000000,BENIGN,Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv,118494
+Flow Duration,-1,-1,BENIGN,Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv,118589
+Flow IAT Mean,-1,-1,BENIGN,Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv,118589
+Flow IAT Max,-1,-1,BENIGN,Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv,118589
+Flow Bytes/s,-8000000,-8000000,BENIGN,Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv,118589
+Flow Packets/s,-2000000,-2000000,BENIGN,Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv,118589
+Flow Duration,-1,-1,BENIGN,Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv,121910
+Flow IAT Mean,-1,-1,BENIGN,Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv,121910
+Flow IAT Max,-1,-1,BENIGN,Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv,121910
+Flow Bytes/s,-8000000,-8000000,BENIGN,Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv,121910
+Flow Packets/s,-2000000,-2000000,BENIGN,Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv,121910
+Flow Duration,-1,-1,BENIGN,Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv,131058
+Flow IAT Mean,-1,-1,BENIGN,Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv,131058
+Flow IAT Max,-1,-1,BENIGN,Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv,131058
+Flow Bytes/s,-8000000,-8000000,BENIGN,Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv,131058
+Flow Packets/s,-2000000,-2000000,BENIGN,Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv,131058
+Flow Duration,-1,-1,BENIGN,Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv,148703
+Flow IAT Mean,-1,-1,BENIGN,Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv,148703
+Flow IAT Max,-1,-1,BENIGN,Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv,148703
+Flow Bytes/s,-6000000,-6000000,BENIGN,Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv,148703
+Flow Packets/s,-2000000,-2000000,BENIGN,Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv,148703
+Flow Duration,-1,-1,BENIGN,Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv,158370
+Flow IAT Mean,-1,-1,BENIGN,Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv,158370
+Flow IAT Max,-1,-1,BENIGN,Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv,158370
+Flow Bytes/s,-6000000,-6000000,BENIGN,Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv,158370
+Flow Packets/s,-2000000,-2000000,BENIGN,Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv,158370
+Flow Duration,-1,-1,BENIGN,Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv,158709
+Flow IAT Mean,-1,-1,BENIGN,Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv,158709
+Flow IAT Max,-1,-1,BENIGN,Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv,158709
+Flow Bytes/s,-6000000,-6000000,BENIGN,Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv,158709
+Flow Packets/s,-2000000,-2000000,BENIGN,Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv,158709
+Flow Duration,-1,-1,BENIGN,Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv,162086
+Flow IAT Mean,-1,-1,BENIGN,Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv,162086
+Flow IAT Max,-1,-1,BENIGN,Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv,162086
+Flow Bytes/s,-6000000,-6000000,BENIGN,Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv,162086
+Flow Packets/s,-2000000,-2000000,BENIGN,Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv,162086
+Flow Duration,-1,-1,BENIGN,Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv,166715
+Flow IAT Mean,-1,-1,BENIGN,Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv,166715
+Flow IAT Max,-1,-1,BENIGN,Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv,166715
+Flow Bytes/s,-6000000,-6000000,BENIGN,Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv,166715
+Flow Packets/s,-2000000,-2000000,BENIGN,Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv,166715
+Flow Duration,-1,-1,BENIGN,Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv,175377
+Flow IAT Mean,-1,-1,BENIGN,Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv,175377
+Flow IAT Max,-1,-1,BENIGN,Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv,175377
+Flow Bytes/s,-6000000,-6000000,BENIGN,Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv,175377
+Flow Packets/s,-2000000,-2000000,BENIGN,Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv,175377
+Flow Duration,-1,-1,BENIGN,Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv,180761
+Flow IAT Mean,-1,-1,BENIGN,Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv,180761
+Flow IAT Max,-1,-1,BENIGN,Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv,180761
+Flow Bytes/s,-6000000,-6000000,BENIGN,Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv,180761
+Flow Packets/s,-2000000,-2000000,BENIGN,Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv,180761
+Flow Duration,-1,-1,BENIGN,Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv,181421
+Flow IAT Mean,-1,-1,BENIGN,Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv,181421
+Flow IAT Max,-1,-1,BENIGN,Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv,181421
+Flow Bytes/s,-6000000,-6000000,BENIGN,Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv,181421
+Flow Packets/s,-2000000,-2000000,BENIGN,Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv,181421
+Flow Duration,-1,-1,BENIGN,Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv,187032
+Flow IAT Mean,-1,-1,BENIGN,Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv,187032
+Flow IAT Max,-1,-1,BENIGN,Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv,187032
+Flow Bytes/s,-6000000,-6000000,BENIGN,Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv,187032
+Flow Packets/s,-2000000,-2000000,BENIGN,Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv,187032
+Flow Duration,-1,-1,BENIGN,Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv,205446
+Flow IAT Mean,-1,-1,BENIGN,Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv,205446
+Flow IAT Max,-1,-1,BENIGN,Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv,205446
+Flow Bytes/s,-6000000,-6000000,BENIGN,Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv,205446
+Flow Packets/s,-2000000,-2000000,BENIGN,Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv,205446
+Flow Duration,-1,-1,BENIGN,Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv,208859
+Flow IAT Mean,-1,-1,BENIGN,Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv,208859
+Flow IAT Max,-1,-1,BENIGN,Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv,208859
+Flow Bytes/s,-6000000,-6000000,BENIGN,Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv,208859
+Flow Packets/s,-2000000,-2000000,BENIGN,Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv,208859
+Flow Duration,-1,-1,BENIGN,Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv,209011
+Flow IAT Mean,-1,-1,BENIGN,Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv,209011
+Flow IAT Max,-1,-1,BENIGN,Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv,209011
+Flow Bytes/s,-6000000,-6000000,BENIGN,Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv,209011
+Flow Packets/s,-2000000,-2000000,BENIGN,Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv,209011
+Fwd Header Length,-1929349973,-1929349973,BENIGN,Monday-WorkingHours.pcap_ISCX.csv,148
+min_seg_size_forward,-83885313,-83885313,BENIGN,Monday-WorkingHours.pcap_ISCX.csv,148
+Fwd Header Length,-83885093,-83885093,BENIGN,Monday-WorkingHours.pcap_ISCX.csv,155
+Bwd Header Length,-83885093,-83885093,BENIGN,Monday-WorkingHours.pcap_ISCX.csv,155
+min_seg_size_forward,-83885313,-83885313,BENIGN,Monday-WorkingHours.pcap_ISCX.csv,155
+Fwd Header Length,-1006620072,-1006620072,BENIGN,Monday-WorkingHours.pcap_ISCX.csv,157
+min_seg_size_forward,-83885313,-83885313,BENIGN,Monday-WorkingHours.pcap_ISCX.csv,157
+Fwd Header Length,-167770470,-167770470,BENIGN,Monday-WorkingHours.pcap_ISCX.csv,162
+Bwd Header Length,-167770470,-167770470,BENIGN,Monday-WorkingHours.pcap_ISCX.csv,162
+min_seg_size_forward,-83885313,-83885313,BENIGN,Monday-WorkingHours.pcap_ISCX.csv,162
+Fwd Header Length,-83885125,-83885125,BENIGN,Monday-WorkingHours.pcap_ISCX.csv,163
+Bwd Header Length,-83885125,-83885125,BENIGN,Monday-WorkingHours.pcap_ISCX.csv,163
+min_seg_size_forward,-83885313,-83885313,BENIGN,Monday-WorkingHours.pcap_ISCX.csv,163
+Fwd Header Length,-83885113,-83885113,BENIGN,Monday-WorkingHours.pcap_ISCX.csv,164
+Bwd Header Length,-83885113,-83885113,BENIGN,Monday-WorkingHours.pcap_ISCX.csv,164
+min_seg_size_forward,-83885313,-83885313,BENIGN,Monday-WorkingHours.pcap_ISCX.csv,164
+Fwd Header Length,-83885081,-83885081,BENIGN,Monday-WorkingHours.pcap_ISCX.csv,165
+Bwd Header Length,-83885081,-83885081,BENIGN,Monday-WorkingHours.pcap_ISCX.csv,165
+min_seg_size_forward,-83885313,-83885313,BENIGN,Monday-WorkingHours.pcap_ISCX.csv,165
+Fwd Header Length,-83885125,-83885125,BENIGN,Monday-WorkingHours.pcap_ISCX.csv,167
+Bwd Header Length,-83885125,-83885125,BENIGN,Monday-WorkingHours.pcap_ISCX.csv,167
+min_seg_size_forward,-83885313,-83885313,BENIGN,Monday-WorkingHours.pcap_ISCX.csv,167
+Fwd Header Length,-167770458,-167770458,BENIGN,Monday-WorkingHours.pcap_ISCX.csv,168
+Bwd Header Length,-83885145,-83885145,BENIGN,Monday-WorkingHours.pcap_ISCX.csv,168
+min_seg_size_forward,-83885313,-83885313,BENIGN,Monday-WorkingHours.pcap_ISCX.csv,168
+Fwd Header Length,-83885137,-83885137,BENIGN,Monday-WorkingHours.pcap_ISCX.csv,169
+Bwd Header Length,-83885137,-83885137,BENIGN,Monday-WorkingHours.pcap_ISCX.csv,169
+min_seg_size_forward,-83885313,-83885313,BENIGN,Monday-WorkingHours.pcap_ISCX.csv,169
+Fwd Header Length,-167770490,-167770490,BENIGN,Monday-WorkingHours.pcap_ISCX.csv,170
+Bwd Header Length,-167770490,-167770490,BENIGN,Monday-WorkingHours.pcap_ISCX.csv,170
+min_seg_size_forward,-83885313,-83885313,BENIGN,Monday-WorkingHours.pcap_ISCX.csv,170
+Fwd Header Length,-83885133,-83885133,BENIGN,Monday-WorkingHours.pcap_ISCX.csv,171
+Bwd Header Length,-83885133,-83885133,BENIGN,Monday-WorkingHours.pcap_ISCX.csv,171
+min_seg_size_forward,-83885313,-83885313,BENIGN,Monday-WorkingHours.pcap_ISCX.csv,171
+Fwd Header Length,-167770490,-167770490,BENIGN,Monday-WorkingHours.pcap_ISCX.csv,172
+Bwd Header Length,-167770490,-167770490,BENIGN,Monday-WorkingHours.pcap_ISCX.csv,172
+min_seg_size_forward,-83885313,-83885313,BENIGN,Monday-WorkingHours.pcap_ISCX.csv,172
+Fwd Header Length,-167770400,-167770400,BENIGN,Monday-WorkingHours.pcap_ISCX.csv,175
+Bwd Header Length,-167770400,-167770400,BENIGN,Monday-WorkingHours.pcap_ISCX.csv,175
+min_seg_size_forward,-83885313,-83885313,BENIGN,Monday-WorkingHours.pcap_ISCX.csv,175
+Fwd Header Length,-83885125,-83885125,BENIGN,Monday-WorkingHours.pcap_ISCX.csv,176
+min_seg_size_forward,-83885313,-83885313,BENIGN,Monday-WorkingHours.pcap_ISCX.csv,176
+Fwd Header Length,-83885221,-83885221,BENIGN,Monday-WorkingHours.pcap_ISCX.csv,178
+Bwd Header Length,-83885221,-83885221,BENIGN,Monday-WorkingHours.pcap_ISCX.csv,178
+min_seg_size_forward,-83885313,-83885313,BENIGN,Monday-WorkingHours.pcap_ISCX.csv,178
+Fwd Header Length,-167770490,-167770490,BENIGN,Monday-WorkingHours.pcap_ISCX.csv,179
+min_seg_size_forward,-83885313,-83885313,BENIGN,Monday-WorkingHours.pcap_ISCX.csv,179
+Fwd Header Length,-167770494,-167770494,BENIGN,Monday-WorkingHours.pcap_ISCX.csv,180
+Bwd Header Length,-83885181,-83885181,BENIGN,Monday-WorkingHours.pcap_ISCX.csv,180
+min_seg_size_forward,-83885313,-83885313,BENIGN,Monday-WorkingHours.pcap_ISCX.csv,180
+Fwd Header Length,-83885011,-83885011,BENIGN,Monday-WorkingHours.pcap_ISCX.csv,181
+Bwd Header Length,-83885011,-83885011,BENIGN,Monday-WorkingHours.pcap_ISCX.csv,181
+min_seg_size_forward,-83885313,-83885313,BENIGN,Monday-WorkingHours.pcap_ISCX.csv,181
+Fwd Header Length,-167770494,-167770494,BENIGN,Monday-WorkingHours.pcap_ISCX.csv,182
+Bwd Header Length,-83885181,-83885181,BENIGN,Monday-WorkingHours.pcap_ISCX.csv,182
+min_seg_size_forward,-83885313,-83885313,BENIGN,Monday-WorkingHours.pcap_ISCX.csv,182
+Fwd Header Length,-83885015,-83885015,BENIGN,Monday-WorkingHours.pcap_ISCX.csv,191
+Bwd Header Length,-83885015,-83885015,BENIGN,Monday-WorkingHours.pcap_ISCX.csv,191
+min_seg_size_forward,-83885313,-83885313,BENIGN,Monday-WorkingHours.pcap_ISCX.csv,191
+Fwd Header Length,-922738443,-922738443,BENIGN,Monday-WorkingHours.pcap_ISCX.csv,491947
+min_seg_size_forward,-83885313,-83885313,BENIGN,Monday-WorkingHours.pcap_ISCX.csv,491947
+Fwd Header Length,-1006623756,-1006623756,BENIGN,Monday-WorkingHours.pcap_ISCX.csv,509175
+min_seg_size_forward,-83885313,-83885313,BENIGN,Monday-WorkingHours.pcap_ISCX.csv,509175
+Fwd Header Length,-1073741218,-1073741218,BENIGN,Tuesday-WorkingHours.pcap_ISCX.csv,284
+Bwd Header Length,-1073741218,-1073741218,BENIGN,Tuesday-WorkingHours.pcap_ISCX.csv,284
+min_seg_size_forward,-536870661,-536870661,BENIGN,Tuesday-WorkingHours.pcap_ISCX.csv,284
+Fwd Header Length,-9663668122,-9663668122,BENIGN,Tuesday-WorkingHours.pcap_ISCX.csv,293
+min_seg_size_forward,-536870661,-536870661,BENIGN,Tuesday-WorkingHours.pcap_ISCX.csv,293
+Fwd Header Length,-1073740992,-1073740992,BENIGN,Tuesday-WorkingHours.pcap_ISCX.csv,296
+Bwd Header Length,-1073740992,-1073740992,BENIGN,Tuesday-WorkingHours.pcap_ISCX.csv,296
+min_seg_size_forward,-536870660,-536870660,BENIGN,Tuesday-WorkingHours.pcap_ISCX.csv,296
+Fwd Header Length,-32212234632,-32212234632,BENIGN,Tuesday-WorkingHours.pcap_ISCX.csv,1268
+min_seg_size_forward,-536870660,-536870660,BENIGN,Tuesday-WorkingHours.pcap_ISCX.csv,1268
+Fwd Header Length,-4831831506,-4831831506,BENIGN,Tuesday-WorkingHours.pcap_ISCX.csv,1269
+min_seg_size_forward,-536870660,-536870660,BENIGN,Tuesday-WorkingHours.pcap_ISCX.csv,1269
+Fwd Header Length,-1073741320,-1073741320,BENIGN,Tuesday-WorkingHours.pcap_ISCX.csv,281249
+Bwd Header Length,-1073741320,-1073741320,BENIGN,Tuesday-WorkingHours.pcap_ISCX.csv,281249
+min_seg_size_forward,-536870660,-536870660,BENIGN,Tuesday-WorkingHours.pcap_ISCX.csv,281249
+Fwd Header Length,-1073741320,-1073741320,BENIGN,Tuesday-WorkingHours.pcap_ISCX.csv,282836
+Bwd Header Length,-1073741320,-1073741320,BENIGN,Tuesday-WorkingHours.pcap_ISCX.csv,282836
+min_seg_size_forward,-536870660,-536870660,BENIGN,Tuesday-WorkingHours.pcap_ISCX.csv,282836
+Bwd Header Length,-1073741320,-1073741320,BENIGN,Tuesday-WorkingHours.pcap_ISCX.csv,292037
+Fwd IAT Min,-1,-1,DoS Hulk,Wednesday-workingHours.pcap_ISCX.csv,79568
+Fwd IAT Min,-8,-8,DoS Hulk,Wednesday-workingHours.pcap_ISCX.csv,81090
+Fwd IAT Min,-1,-1,DoS Hulk,Wednesday-workingHours.pcap_ISCX.csv,82704
+Fwd IAT Min,-1,-1,DoS Hulk,Wednesday-workingHours.pcap_ISCX.csv,88152
+Fwd IAT Min,-1,-1,DoS Hulk,Wednesday-workingHours.pcap_ISCX.csv,88209
+Fwd IAT Min,-1,-1,DoS Hulk,Wednesday-workingHours.pcap_ISCX.csv,93358
+Fwd IAT Min,-1,-1,DoS Hulk,Wednesday-workingHours.pcap_ISCX.csv,94068
+Fwd IAT Min,-1,-1,DoS Hulk,Wednesday-workingHours.pcap_ISCX.csv,107492
+Fwd IAT Min,-1,-1,DoS GoldenEye,Wednesday-workingHours.pcap_ISCX.csv,545537
+Fwd IAT Min,-1,-1,DoS GoldenEye,Wednesday-workingHours.pcap_ISCX.csv,570664
+Fwd IAT Min,-1,-1,DoS GoldenEye,Wednesday-workingHours.pcap_ISCX.csv,658514

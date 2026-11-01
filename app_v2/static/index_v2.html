@@ -1,0 +1,2337 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NIDS | Automated Network Traffic Classification & Intrusion Detection System</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      --bg-body: #0a0f1d;
+      --bg-surface: #11182c;
+      --bg-surface-elevated: #16203b;
+      --bg-card: #131c33;
+      --border-subtle: #1e2c4f;
+      --border-focus: #3b82f6;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+      --primary: #3b82f6;
+      --primary-hover: #2563eb;
+      --primary-glow: rgba(59, 130, 246, 0.25);
+      --success: #10b981;
+      --success-bg: rgba(16, 185, 129, 0.12);
+      --success-border: rgba(16, 185, 129, 0.3);
+      --warning: #f59e0b;
+      --warning-bg: rgba(245, 158, 11, 0.12);
+      --warning-border: rgba(245, 158, 11, 0.3);
+      --danger: #ef4444;
+      --danger-bg: rgba(239, 68, 68, 0.12);
+      --danger-border: rgba(239, 68, 68, 0.3);
+      --info: #06b6d4;
+      --info-bg: rgba(6, 182, 212, 0.12);
+      --radius-sm: 6px;
+      --radius-md: 10px;
+      --radius-lg: 14px;
+      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.2);
+      --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: var(--font-sans);
+      background: var(--bg-body);
+      color: var(--text-main);
+      line-height: 1.5;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Top Navigation */
+    header {
+      background: linear-gradient(180deg, rgba(17, 24, 44, 0.98) 0%, rgba(10, 15, 29, 0.98) 100%);
+      border-bottom: 1px solid var(--border-subtle);
+      padding: 14px 28px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(12px);
+    }
+    .header-content {
+      max-width: 1440px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .brand-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: var(--radius-md);
+      background: linear-gradient(135deg, #2563eb, #06b6d4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 16px var(--primary-glow);
+    }
+    .brand-icon svg { width: 24px; height: 24px; fill: white; }
+    .brand-title h1 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: #fff;
+    }
+    .brand-title p {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+    .header-controls {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .model-selector-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--bg-surface-elevated);
+      padding: 4px 10px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-subtle);
+    }
+    .model-selector-group label {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+    .model-select {
+      background: transparent;
+      border: none;
+      color: #93c5fd;
+      font-weight: 600;
+      font-size: 0.82rem;
+      cursor: pointer;
+      outline: none;
+      font-family: var(--font-mono);
+    }
+    .model-select option {
+      background: var(--bg-surface);
+      color: var(--text-main);
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 12px;
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+    }
+    .badge-primary { background: rgba(59, 130, 246, 0.15); border: 1px solid rgba(59, 130, 246, 0.4); color: #93c5fd; }
+    .badge-success { background: var(--success-bg); border: 1px solid var(--success-border); color: #6ee7b7; }
+    .badge-warning { background: var(--warning-bg); border: 1px solid var(--warning-border); color: #fde68a; }
+    .badge-danger { background: var(--danger-bg); border: 1px solid var(--danger-border); color: #fca5a5; }
+    .pulse-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #10b981;
+      box-shadow: 0 0 8px #10b981;
+      animation: pulse 2s infinite;
+    }
+    .pulse-dot.pulse-red {
+      background: #ef4444;
+      box-shadow: 0 0 8px #ef4444;
+      animation: pulse 1s infinite;
+    }
+    .pulse-dot.pulse-gray {
+      background: #64748b;
+      box-shadow: none;
+      animation: none;
+    }
+    @keyframes pulse { 0% { opacity: 0.4; } 50% { opacity: 1; } 100% { opacity: 0.4; } }
+
+    /* Navigation Tabs */
+    .nav-tabs-bar {
+      background: rgba(14, 20, 38, 0.9);
+      border-bottom: 1px solid var(--border-subtle);
+      padding: 0 28px;
+    }
+    .nav-tabs-container {
+      max-width: 1440px;
+      margin: 0 auto;
+      display: flex;
+      gap: 4px;
+      overflow-x: auto;
+    }
+    .nav-tab-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 18px;
+      background: transparent;
+      border: none;
+      border-bottom: 2px solid transparent;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+    .nav-tab-btn svg { width: 16px; height: 16px; fill: currentColor; }
+    .nav-tab-btn:hover { color: #fff; background: rgba(255, 255, 255, 0.02); }
+    .nav-tab-btn.active {
+      color: #60a5fa;
+      border-bottom-color: #3b82f6;
+      font-weight: 600;
+      background: rgba(59, 130, 246, 0.06);
+    }
+    .tab-badge {
+      background: rgba(239, 68, 68, 0.2);
+      color: #f87171;
+      border: 1px solid rgba(239, 68, 68, 0.4);
+      padding: 1px 6px;
+      border-radius: 9999px;
+      font-size: 0.7rem;
+      font-weight: 700;
+    }
+
+    /* Layout */
+    main {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 24px 20px 48px;
+      width: 100%;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .tab-pane { display: none; flex-direction: column; gap: 24px; }
+    .tab-pane.active { display: flex; }
+
+    /* Operational Notice Banner */
+    .disclaimer-banner {
+      background: rgba(245, 158, 11, 0.08);
+      border: 1px solid rgba(245, 158, 11, 0.25);
+      border-radius: var(--radius-md);
+      padding: 12px 18px;
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      color: #cbd5e1;
+      font-size: 0.84rem;
+    }
+    .disclaimer-banner svg {
+      width: 20px;
+      height: 20px;
+      fill: #f59e0b;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .disclaimer-banner strong { color: #fef3c7; }
+
+    /* Cards & Grids */
+    .overview-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+    }
+    .stat-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 18px 20px;
+      box-shadow: var(--shadow-sm);
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+    .stat-card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(59, 130, 246, 0.4);
+    }
+    .stat-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+    .stat-label {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .stat-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255, 255, 255, 0.05);
+    }
+    .stat-icon svg { width: 18px; height: 18px; fill: var(--text-muted); }
+    .stat-value {
+      font-size: 1.85rem;
+      font-weight: 700;
+      color: #fff;
+      font-family: var(--font-sans);
+      letter-spacing: -0.02em;
+    }
+    .stat-footer {
+      margin-top: 6px;
+      font-size: 0.74rem;
+      color: var(--text-dim);
+    }
+
+    .dashboard-row {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 20px;
+    }
+    @media (max-width: 1024px) {
+      .dashboard-row { grid-template-columns: 1fr; }
+    }
+
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 22px;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border-subtle);
+      padding-bottom: 14px;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .card-title {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .card-title svg { width: 20px; height: 20px; fill: var(--primary); }
+    .card-subtitle {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    /* Buttons & Controls */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 8px 16px;
+      border-radius: var(--radius-sm);
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      border: 1px solid transparent;
+      outline: none;
+    }
+    .btn-sm { padding: 5px 10px; font-size: 0.75rem; }
+    .btn-primary {
+      background: var(--primary);
+      color: #fff;
+    }
+    .btn-primary:hover:not(:disabled) { background: var(--primary-hover); }
+    .btn-danger {
+      background: rgba(239, 68, 68, 0.2);
+      border-color: rgba(239, 68, 68, 0.4);
+      color: #fca5a5;
+    }
+    .btn-danger:hover:not(:disabled) {
+      background: #ef4444;
+      color: #fff;
+    }
+    .btn-success {
+      background: rgba(16, 185, 129, 0.2);
+      border-color: rgba(16, 185, 129, 0.4);
+      color: #6ee7b7;
+    }
+    .btn-success:hover:not(:disabled) {
+      background: #10b981;
+      color: #fff;
+    }
+    .btn-outline {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-main);
+    }
+    .btn-outline:hover:not(:disabled) {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+    .btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    /* Form inputs */
+    select, input[type="text"] {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border-subtle);
+      color: #cbd5e1;
+      padding: 7px 12px;
+      border-radius: var(--radius-sm);
+      font-size: 0.82rem;
+      outline: none;
+    }
+    select:focus, input[type="text"]:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+    }
+
+    /* Live Capture Controls Grid */
+    .capture-controls-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 16px;
+      align-items: center;
+      background: rgba(16, 24, 44, 0.6);
+      padding: 16px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-subtle);
+    }
+    @media (max-width: 860px) {
+      .capture-controls-grid { grid-template-columns: 1fr; }
+    }
+
+    /* Tables */
+    .table-container {
+      overflow-x: auto;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      background: rgba(16, 25, 47, 0.4);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.84rem;
+      text-align: left;
+    }
+    th {
+      background: rgba(255, 255, 255, 0.03);
+      padding: 12px 14px;
+      font-weight: 600;
+      color: var(--text-muted);
+      border-bottom: 1px solid var(--border-subtle);
+      white-space: nowrap;
+      user-select: none;
+    }
+    td {
+      padding: 10px 14px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+      color: #cbd5e1;
+      vertical-align: middle;
+    }
+    tr:last-child td { border-bottom: none; }
+    tr:hover td { background: rgba(255, 255, 255, 0.02); }
+
+    /* Class pills */
+    .class-pill {
+      display: inline-block;
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-size: 0.74rem;
+      font-weight: 600;
+      letter-spacing: 0.01em;
+      white-space: nowrap;
+    }
+    .pill-benign { background: rgba(16, 185, 129, 0.15); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.3); }
+    .pill-ddos { background: rgba(239, 68, 68, 0.15); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.3); }
+    .pill-dos { background: rgba(245, 158, 11, 0.15); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.3); }
+    .pill-web { background: rgba(168, 85, 247, 0.15); color: #c084fc; border: 1px solid rgba(168, 85, 247, 0.3); }
+    .pill-scan { background: rgba(59, 130, 246, 0.15); color: #60a5fa; border: 1px solid rgba(59, 130, 246, 0.3); }
+    .pill-bot { background: rgba(236, 72, 153, 0.15); color: #f472b6; border: 1px solid rgba(236, 72, 153, 0.3); }
+    .pill-other { background: rgba(148, 163, 184, 0.15); color: #cbd5e1; border: 1px solid rgba(148, 163, 184, 0.3); }
+
+    /* Confidence Meter */
+    .confidence-meter {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      min-width: 105px;
+    }
+    .confidence-bar-bg {
+      flex: 1;
+      height: 6px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 9999px;
+      overflow: hidden;
+    }
+    .confidence-bar-val {
+      height: 100%;
+      background: var(--primary);
+      border-radius: 9999px;
+    }
+
+    /* Modal */
+    .modal-backdrop {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(5, 8, 18, 0.85);
+      backdrop-filter: blur(8px);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .modal-backdrop.open { display: flex; }
+    .modal-box {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      max-width: 760px;
+      width: 100%;
+      max-height: 88vh;
+      overflow-y: auto;
+      padding: 24px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border-subtle);
+      padding-bottom: 14px;
+    }
+    .modal-title { font-size: 1.15rem; font-weight: 700; color: #fff; }
+    .modal-close {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      cursor: pointer;
+      font-size: 1.5rem;
+      line-height: 1;
+    }
+    .flow-kv-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 12px;
+    }
+    .flow-kv-item {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      padding: 10px;
+    }
+    .flow-kv-key { font-size: 0.72rem; color: var(--text-dim); text-transform: uppercase; font-weight: 600; }
+    .flow-kv-val { font-size: 0.88rem; color: #fff; margin-top: 2px; font-family: var(--font-mono); }
+
+    /* Dropzone */
+    .dropzone {
+      border: 2px dashed var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 32px 20px;
+      text-align: center;
+      background: rgba(20, 28, 48, 0.5);
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .dropzone:hover, .dropzone.drag-active {
+      border-color: var(--primary);
+      background: rgba(59, 130, 246, 0.05);
+    }
+    .dropzone-icon {
+      width: 48px;
+      height: 48px;
+      margin: 0 auto 12px;
+      border-radius: 50%;
+      background: rgba(59, 130, 246, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .dropzone-icon svg { width: 24px; height: 24px; fill: var(--primary); }
+
+    .distribution-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .distribution-item {
+      background: rgba(255, 255, 255, 0.02);
+      border-radius: var(--radius-sm);
+      padding: 10px 14px;
+      border: 1px solid rgba(255, 255, 255, 0.04);
+    }
+    .dist-meta {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 6px;
+      font-size: 0.82rem;
+    }
+    .dist-bar-track {
+      height: 6px;
+      background: rgba(255, 255, 255, 0.06);
+      border-radius: 9999px;
+      overflow: hidden;
+    }
+    .dist-bar-fill { height: 100%; border-radius: 9999px; }
+
+    /* Features Grid */
+    .feature-tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      max-height: 220px;
+      overflow-y: auto;
+      padding: 10px;
+      background: rgba(0, 0, 0, 0.2);
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-subtle);
+    }
+    .feature-tag {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 4px;
+      padding: 3px 8px;
+      font-size: 0.72rem;
+      font-family: var(--font-mono);
+      color: #94a3b8;
+    }
+
+    /* Alerts */
+    .alert {
+      padding: 12px 16px;
+      border-radius: var(--radius-sm);
+      font-size: 0.84rem;
+      display: none;
+      align-items: center;
+      gap: 12px;
+    }
+    .alert.visible { display: flex; }
+    .alert-error { background: var(--danger-bg); border: 1px solid var(--danger-border); color: #fca5a5; }
+    .alert-success { background: var(--success-bg); border: 1px solid var(--success-border); color: #6ee7b7; }
+    .alert-warning { background: var(--warning-bg); border: 1px solid var(--warning-border); color: #fde68a; }
+
+    /* Empty state */
+    .empty-state {
+      padding: 36px 20px;
+      text-align: center;
+      color: var(--text-dim);
+      font-size: 0.88rem;
+    }
+    .empty-state svg {
+      width: 36px;
+      height: 36px;
+      fill: var(--text-dim);
+      margin-bottom: 8px;
+      opacity: 0.6;
+    }
+
+    footer {
+      border-top: 1px solid var(--border-subtle);
+      padding: 18px 24px;
+      text-align: center;
+      font-size: 0.78rem;
+      color: var(--text-dim);
+      background: rgba(10, 15, 29, 0.95);
+      margin-top: auto;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-content">
+    <div class="brand">
+      <div class="brand-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/></svg>
+      </div>
+      <div class="brand-title">
+        <h1>NIDS Flow Classifier & Live Intrusion Detection</h1>
+        <p>Windows 11 Automated Network Traffic Analysis & Multiclass XGBoost Inference</p>
+      </div>
+    </div>
+
+    <div class="header-controls">
+      <!-- Model Switcher Dropdown -->
+      <div class="model-selector-group">
+        <label for="model-version-selector">Model:</label>
+        <select id="model-version-selector" class="model-select">
+          <option value="replacement_v2">replacement_v2 (v2 In-Dist Split: 99.89%)</option>
+          <option value="replacement_v1">replacement_v1 (Baseline - Unevaluated by v2 Test)</option>
+        </select>
+      </div>
+
+      <!-- Live Capture Status Badge -->
+      <span class="badge badge-warning" id="capture-status-badge">
+        <span class="pulse-dot pulse-gray" id="capture-pulse-dot"></span>
+        <span id="capture-status-text">Capture: Stopped</span>
+      </span>
+
+      <!-- System Health Badge -->
+      <span class="badge badge-success" id="system-health-badge">
+        <span class="pulse-dot"></span> System Ready
+      </span>
+    </div>
+  </div>
+</header>
+
+<!-- Navigation Tabs -->
+<nav class="nav-tabs-bar" aria-label="Dashboard Navigation">
+  <div class="nav-tabs-container">
+    <button class="nav-tab-btn active" data-tab="tab-live">
+      <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+      Live Monitoring & Capture
+    </button>
+    <button class="nav-tab-btn" data-tab="tab-csv">
+      <svg viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM14 13v4h-4v-4H7l5-5 5 5h-3z"/></svg>
+      CSV Replay & Batch Analysis
+    </button>
+    <button class="nav-tab-btn" data-tab="tab-events">
+      <svg viewBox="0 0 24 24"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-6v-5c0-3.07-1.63-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.64 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2zm-2 1H8v-6c0-2.48 1.51-4.5 4-4.5s4 2.02 4 4.5v6z"/></svg>
+      Detection Events & Alerts
+      <span class="tab-badge" id="tab-events-badge">0</span>
+    </button>
+    <button class="nav-tab-btn" data-tab="tab-history">
+      <svg viewBox="0 0 24 24"><path d="M13 3c-4.97 0-9 4.03-9 9H1l3.89 3.89.07.14L9 12H6c0-3.87 3.13-7 7-7s7 3.13 7 7-3.13 7-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42C8.27 19.99 10.51 21 13 21c4.97 0 9-4.03 9-9s-4.03-9-9-9zm-1 5v5l4.28 2.54.72-1.21-3.5-2.08V8H12z"/></svg>
+      Database & Flow History
+    </button>
+    <button class="nav-tab-btn" data-tab="tab-evaluation">
+      <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+      Model Specs & Held-Out Evaluation
+    </button>
+  </div>
+</nav>
+
+<main>
+  <!-- Mandatory Operational Notice -->
+  <div class="disclaimer-banner" id="operational-disclaimer">
+    <svg viewBox="0 0 24 24"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg>
+    <div>
+      <strong>Operational Safety & Disclosures:</strong>
+      <div style="margin-top: 4px; font-size: 0.8rem; line-height: 1.45; color: #cbd5e1;">
+        • <strong>Live capture is EXPERIMENTAL:</strong> Passive capture is restricted to authorized interfaces (defaulting strictly to Windows Npcap loopback <code>127.0.0.1</code>). No packet injection, port scans, or automated firewall blocking are performed. Live capture is not operationally validated for enterprise defense.<br>
+        • <strong>In-Distribution Split Estimate:</strong> Model v2 metrics are an in-distribution estimate from one 80/20 CIC-IDS-2017 split; they do not establish out-of-distribution generalization.<br>
+        • <strong>Unevaluated Minority Classes:</strong> Heartbleed, Infiltration, and SQL Injection have zero test support and are unevaluated.<br>
+        • <strong>Baseline Model v1:</strong> <code>replacement_v1</code> is unevaluated by the v2 test partition.<br>
+        • <strong>Uncalibrated Confidence:</strong> Model confidence scores are uncalibrated softmax scores and do not establish correctness.
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- TAB 1: LIVE MONITORING & CAPTURE -->
+  <!-- ========================================== -->
+  <div class="tab-pane active" id="tab-live">
+    <!-- Live Capture Controller Card -->
+    <section class="card" id="card-capture-control">
+      <div class="card-header">
+        <div>
+          <h2 class="card-title">
+            <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+            Authorized Live Packet Capture Control
+          </h2>
+          <p class="card-subtitle">Capture real network packets via Npcap, track bidirectional flows, and run automated XGBoost classification.</p>
+        </div>
+        <span class="badge badge-primary" id="live-session-badge">Session: Inactive</span>
+      </div>
+
+      <div class="capture-controls-grid">
+        <div>
+          <label for="capture-interface-select" style="font-size: 0.78rem; font-weight: 600; color: var(--text-muted); display: block; margin-bottom: 6px;">
+            Network Capture Interface:
+          </label>
+          <select id="capture-interface-select" style="width: 100%;">
+            <option value="127.0.0.1">127.0.0.1 (Windows Npcap Loopback Adapter) — AUTHORIZED</option>
+          </select>
+          <div style="font-size: 0.72rem; color: var(--text-dim); margin-top: 4px;" id="interface-desc">
+            Default loopback interface ensures safe local-only traffic inspection.
+          </div>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 8px;">
+          <div style="font-size: 0.78rem; font-weight: 600; color: var(--text-muted);">Capture Mode:</div>
+          <label style="display: flex; align-items: center; gap: 8px; font-size: 0.8rem; color: #cbd5e1; cursor: pointer;">
+            <input type="checkbox" id="chk-non-promisc" checked disabled> Non-Promiscuous (Default Safe)
+          </label>
+          <label style="display: flex; align-items: center; gap: 8px; font-size: 0.8rem; color: #cbd5e1; cursor: pointer;">
+            <input type="checkbox" id="chk-enable-inference" checked> Automated Flow Inference
+          </label>
+        </div>
+
+        <div style="display: flex; gap: 10px; justify-content: flex-end; flex-wrap: wrap;">
+          <button class="btn btn-outline" id="btn-simulate-traffic" type="button" title="Inject simulated test flows">
+            <svg viewBox="0 0 24 24" style="width: 16px; height: 16px; fill: currentColor;"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/></svg>
+            Simulate Traffic
+          </button>
+          <button class="btn btn-success" id="btn-start-capture" type="button">
+            <svg viewBox="0 0 24 24" style="width: 16px; height: 16px; fill: currentColor;"><path d="M8 5v14l11-7z"/></svg>
+            Start Capture
+          </button>
+          <button class="btn btn-danger" id="btn-stop-capture" type="button" disabled>
+            <svg viewBox="0 0 24 24" style="width: 16px; height: 16px; fill: currentColor;"><path d="M6 6h12v12H6z"/></svg>
+            Stop Capture
+          </button>
+        </div>
+      </div>
+
+      <!-- Live Error / Warning Banner -->
+      <div class="alert alert-error" id="capture-error-banner">
+        <svg viewBox="0 0 24 24" style="width: 18px; height: 18px; fill: currentColor;"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+        <span id="capture-error-text">Capture error message</span>
+      </div>
+    </section>
+
+    <!-- Live Telemetry Stats Grid -->
+    <section class="overview-grid" aria-label="Live Telemetry">
+      <div class="stat-card">
+        <div class="stat-header">
+          <span class="stat-label">Packets Captured</span>
+          <div class="stat-icon"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg></div>
+        </div>
+        <div class="stat-value" id="val-live-packets">0</div>
+        <div class="stat-footer" id="val-live-rate">0 pkts/sec</div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-header">
+          <span class="stat-label">Active Flows</span>
+          <div class="stat-icon"><svg viewBox="0 0 24 24"><path d="M19 15v4H5v-4h14m1-2H4c-.55 0-1 .45-1 1v6c0 .55.45 1 1 1h16c.55 0 1-.45 1-1v-6c0-.55-.45-1-1-1zM7 18.5c-.82 0-1.5-.67-1.5-1.5s.68-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></svg></div>
+        </div>
+        <div class="stat-value" id="val-live-active-flows" style="color: #60a5fa;">0</div>
+        <div class="stat-footer">Bidirectional aggregation</div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-header">
+          <span class="stat-label">Flows Classified</span>
+          <div class="stat-icon"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
+        </div>
+        <div class="stat-value" id="val-live-classified" style="color: #34d399;">0</div>
+        <div class="stat-footer">Completed & evaluated</div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-header">
+          <span class="stat-label">Model Attack Detections</span>
+          <div class="stat-icon"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg></div>
+        </div>
+        <div class="stat-value" id="val-live-attacks" style="color: #f87171;">0</div>
+        <div class="stat-footer">Potential intrusions flagged</div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-header">
+          <span class="stat-label">Benign Traffic Flows</span>
+          <div class="stat-icon"><svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/></svg></div>
+        </div>
+        <div class="stat-value" id="val-live-benign" style="color: #34d399;">0</div>
+        <div class="stat-footer">Classified as normal</div>
+      </div>
+    </section>
+
+    <!-- Recent Live Flows Stream Table -->
+    <section class="card" id="card-live-flows">
+      <div class="card-header">
+        <div>
+          <h2 class="card-title">
+            <svg viewBox="0 0 24 24"><path d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z"/></svg>
+            Live Flow Construction & Automated Inference Feed
+          </h2>
+          <p class="card-subtitle">Real-time constructed flow 5-tuples, duration, packet counts, and automated model classification.</p>
+        </div>
+        <div style="display: flex; gap: 8px; align-items: center;">
+          <button class="btn btn-outline btn-sm" id="btn-pause-live-feed" type="button">
+            <svg viewBox="0 0 24 24" style="width: 14px; height: 14px; fill: currentColor;"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+            <span id="btn-pause-text">Pause Stream</span>
+          </button>
+          <button class="btn btn-outline btn-sm" id="btn-clear-live-flows" type="button">Clear</button>
+        </div>
+      </div>
+
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th style="width: 130px;">Flow ID</th>
+              <th style="width: 70px;">Proto</th>
+              <th>Source Endpoint</th>
+              <th>Destination Endpoint</th>
+              <th style="width: 90px;">Duration</th>
+              <th style="width: 80px;">Packets</th>
+              <th style="width: 170px;">Classification</th>
+              <th style="width: 140px;">Confidence</th>
+              <th style="width: 80px;">Action</th>
+            </tr>
+          </thead>
+          <tbody id="live-flows-tbody">
+            <tr>
+              <td colspan="9" class="empty-state">
+                <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+                <div>No live flows captured yet. Click <strong>Start Capture</strong> above to begin live network flow analysis.</div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- TAB 2: CSV REPLAY & BATCH ANALYSIS -->
+  <!-- ========================================== -->
+  <div class="tab-pane" id="tab-csv">
+    <!-- Overview Stats for CSV / Global Database -->
+    <section class="overview-grid">
+      <div class="stat-card">
+        <div class="stat-header">
+          <span class="stat-label">Total Flows Received</span>
+          <div class="stat-icon"><svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg></div>
+        </div>
+        <div class="stat-value" id="val-csv-received">—</div>
+        <div class="stat-footer">Stored across all runs in SQLite</div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-header">
+          <span class="stat-label">Successfully Scored</span>
+          <div class="stat-icon"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
+        </div>
+        <div class="stat-value" id="val-csv-scored" style="color: #34d399;">—</div>
+        <div class="stat-footer">Model evaluated flows</div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-header">
+          <span class="stat-label">Unscored Flows</span>
+          <div class="stat-icon"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg></div>
+        </div>
+        <div class="stat-value" id="val-csv-unscored">0</div>
+        <div class="stat-footer">Stored without predictions</div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-header">
+          <span class="stat-label">Target Classes Present</span>
+          <div class="stat-icon"><svg viewBox="0 0 24 24"><path d="M10 3H4c-1.1 0-2 .9-2 2v6c0 1.1.9 2 2 2h6c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm10 0h-6c-1.1 0-2 .9-2 2v6c0 1.1.9 2 2 2h6c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM10 13H4c-1.1 0-2 .9-2 2v6c0 1.1.9 2 2 2h6c1.1 0 2-.9 2-2v-6c0-1.1-.9-2-2-2zm10 0h-6c-1.1 0-2 .9-2 2v6c0 1.1.9 2 2 2h6c1.1 0 2-.9 2-2v-6c0-1.1-.9-2-2-2z"/></svg></div>
+        </div>
+        <div class="stat-value" id="val-csv-classes">—</div>
+        <div class="stat-footer">Out of 15 model target categories</div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-header">
+          <span class="stat-label">Upload Runs Recorded</span>
+          <div class="stat-icon"><svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg></div>
+        </div>
+        <div class="stat-value" id="val-csv-runs">—</div>
+        <div class="stat-footer">In SQLite run history</div>
+      </div>
+    </section>
+
+    <!-- Upload & Distribution Row -->
+    <div class="dashboard-row">
+      <!-- CSV Upload Card -->
+      <section class="card" id="section-upload">
+        <div class="card-header">
+          <div>
+            <h2 class="card-title">
+              <svg viewBox="0 0 24 24"><path d="M9 16h6v-6h4l-7-7-7 7h4zm-4 2h14v2H5z"/></svg>
+              Upload Flow CSV Dataset
+            </h2>
+            <p class="card-subtitle">Must contain 63 canonical feature columns (feature_cleaned_v2 schema).</p>
+          </div>
+          <span class="badge badge-primary">Max 50k rows / 100MB</span>
+        </div>
+
+        <div class="dropzone" id="upload-dropzone">
+          <input type="file" id="csv-file-input" accept=".csv" style="display: none;">
+          <div class="dropzone-icon">
+            <svg viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM14 13v4h-4v-4H7l5-5 5 5h-3z"/></svg>
+          </div>
+          <div style="font-weight: 600; color: #fff; margin-bottom: 4px;">Click to choose or drag & drop a .csv file</div>
+          <div style="font-size: 0.78rem; color: var(--text-muted);">Validated against 63 feature columns with SQLite persistence</div>
+        </div>
+
+        <div class="selected-file-info" id="selected-file-container" style="display: none; justify-content: space-between; align-items: center; padding: 10px 14px; background: rgba(255,255,255,0.03); border-radius: var(--radius-sm); border: 1px solid var(--border-subtle);">
+          <div>
+            <span style="font-weight: 600; color: #fff;" id="selected-file-name">—</span>
+            <span style="font-size: 0.78rem; color: var(--text-muted); margin-left: 6px;" id="selected-file-size">—</span>
+          </div>
+          <button class="btn btn-outline btn-sm" id="btn-clear-file" type="button">Change</button>
+        </div>
+
+        <div class="alert alert-error" id="upload-error-banner">
+          <div id="upload-error-text">Validation error message</div>
+        </div>
+
+        <div class="alert alert-success" id="upload-success-banner">
+          <div id="upload-success-text">Upload successful</div>
+        </div>
+
+        <button class="btn btn-primary" id="btn-score-upload" type="button" disabled>
+          <svg viewBox="0 0 24 24" style="width: 18px; height: 18px; fill: currentColor;"><path d="M8 5v14l11-7z"/></svg>
+          Run Model Inference (/score)
+        </button>
+      </section>
+
+      <!-- Prediction Distribution Card -->
+      <section class="card" id="section-distribution">
+        <div class="card-header">
+          <div>
+            <h2 class="card-title">
+              <svg viewBox="0 0 24 24"><path d="M5 9.2h3V19H5zM10.6 5h2.8v14h-2.8zm5.6 8H19v6h-2.8z"/></svg>
+              Prediction Distribution
+            </h2>
+            <p class="card-subtitle" id="dist-subtitle">Predicted class frequencies</p>
+          </div>
+          <div style="display: flex; gap: 4px;">
+            <button class="btn btn-outline btn-sm" id="btn-toggle-current" type="button" style="background: rgba(59,130,246,0.2); color: #93c5fd;">Active Run</button>
+            <button class="btn btn-outline btn-sm" id="btn-toggle-all" type="button">All-Time</button>
+          </div>
+        </div>
+
+        <div class="distribution-list" id="distribution-bars-container">
+          <div class="empty-state">
+            <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+            <div>Upload a CSV to view predicted traffic class breakdown</div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Prediction Explorer Table -->
+    <section class="card" id="section-results-table">
+      <div class="card-header">
+        <div>
+          <h2 class="card-title">
+            <svg viewBox="0 0 24 24"><path d="M3 13h2v-2H3v2zm0 4h2v-2H3v2zm0-8h2V7H3v2zm4 4h14v-2H7v2zm0 4h14v-2H7v2zM7 7v2h14V7H7z"/></svg>
+            Dataset Prediction Results Explorer
+          </h2>
+          <p class="card-subtitle">Displaying individual flow classification rows with confidence and SQLite run mapping.</p>
+        </div>
+        <button class="btn btn-outline btn-sm" id="btn-export-csv" type="button" disabled>
+          <svg viewBox="0 0 24 24" style="width: 14px; height: 14px; fill: currentColor;"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+          Export CSV
+        </button>
+      </div>
+
+      <!-- Toolbar -->
+      <div style="display: flex; gap: 12px; flex-wrap: wrap; align-items: center; justify-content: space-between;">
+        <input type="text" id="filter-search-input" placeholder="Search by Row ID or Class..." style="min-width: 240px;">
+
+        <div style="display: flex; gap: 10px; align-items: center;">
+          <label for="filter-class-select" style="font-size: 0.8rem; color: var(--text-muted);">Class:</label>
+          <select id="filter-class-select">
+            <option value="ALL">All Predicted Classes</option>
+            <option value="ATTACKS_ONLY">Attacks Only (Excl. BENIGN)</option>
+          </select>
+
+          <label for="sort-select" style="font-size: 0.8rem; color: var(--text-muted); margin-left: 6px;">Sort:</label>
+          <select id="sort-select">
+            <option value="row_asc">Row ID (Ascending)</option>
+            <option value="row_desc">Row ID (Descending)</option>
+            <option value="conf_desc">Confidence (Highest)</option>
+            <option value="conf_asc">Confidence (Lowest)</option>
+          </select>
+
+          <label for="page-size-select" style="font-size: 0.8rem; color: var(--text-muted); margin-left: 6px;">Rows:</label>
+          <select id="page-size-select">
+            <option value="15">15</option>
+            <option value="25" selected>25</option>
+            <option value="50">50</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th style="width: 90px;">Row #</th>
+              <th>Predicted Traffic Class</th>
+              <th style="width: 220px;">Model Confidence</th>
+              <th style="width: 120px;">Status</th>
+              <th style="width: 130px;">Run ID</th>
+            </tr>
+          </thead>
+          <tbody id="predictions-table-body">
+            <tr>
+              <td colspan="5" class="empty-state">
+                <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+                <div>No flow predictions loaded yet. Upload a CSV above to inspect flows.</div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div style="display: flex; justify-content: space-between; align-items: center; font-size: 0.8rem; color: var(--text-muted);">
+        <span id="pagination-info">Showing 0 of 0 flows</span>
+        <div style="display: flex; gap: 6px;">
+          <button class="btn btn-outline btn-sm" id="btn-page-prev" disabled>Previous</button>
+          <span id="pagination-page-label" style="display: flex; align-items: center; padding: 0 8px; font-weight: 600;">1 / 1</span>
+          <button class="btn btn-outline btn-sm" id="btn-page-next" disabled>Next</button>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- TAB 3: DETECTION EVENTS & ALERTS -->
+  <!-- ========================================== -->
+  <div class="tab-pane" id="tab-events">
+    <!-- Events Summary Cards -->
+    <section class="overview-grid">
+      <div class="stat-card">
+        <div class="stat-header">
+          <span class="stat-label">Total Detection Events</span>
+          <div class="stat-icon"><svg viewBox="0 0 24 24"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-6v-5c0-3.07-1.63-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.64 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2zm-2 1H8v-6c0-2.48 1.51-4.5 4-4.5s4 2.02 4 4.5v6z"/></svg></div>
+        </div>
+        <div class="stat-value" id="val-events-total" style="color: #f87171;">0</div>
+        <div class="stat-footer">Model-classified attack alerts</div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-header">
+          <span class="stat-label">Pending / Unacknowledged</span>
+          <div class="stat-icon"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg></div>
+        </div>
+        <div class="stat-value" id="val-events-pending" style="color: #fbbf24;">0</div>
+        <div class="stat-footer">Requires operator inspection</div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-header">
+          <span class="stat-label">Acknowledged Events</span>
+          <div class="stat-icon"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
+        </div>
+        <div class="stat-value" id="val-events-acked" style="color: #34d399;">0</div>
+        <div class="stat-footer">Confirmed by administrator</div>
+      </div>
+    </section>
+
+    <!-- Detection Events Feed -->
+    <section class="card" id="card-detection-events">
+      <div class="card-header">
+        <div>
+          <h2 class="card-title">
+            <svg viewBox="0 0 24 24"><path d="M12 2L1 21h22L12 2zm0 3.99L19.53 19H4.47L12 5.99zM11 16h2v2h-2zm0-6h2v4h-2z"/></svg>
+            Intrusion Detection Events Feed (Model-Classified Attacks)
+          </h2>
+          <p class="card-subtitle">Generated automatically when XGBoost flags an incoming flow as an attack category.</p>
+        </div>
+        <div style="display: flex; gap: 8px;">
+          <select id="events-status-filter" style="font-size: 0.78rem;">
+            <option value="ALL">All Events</option>
+            <option value="PENDING">Pending Only</option>
+            <option value="ACKNOWLEDGED">Acknowledged Only</option>
+          </select>
+          <button class="btn btn-outline btn-sm" id="btn-refresh-events" type="button">
+            <svg viewBox="0 0 24 24" style="width: 14px; height: 14px; fill: currentColor;"><path d="M17.65 6.35C16.2 4.9 14.21 4 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/></svg>
+            Refresh
+          </button>
+        </div>
+      </div>
+
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th style="width: 80px;">Event #</th>
+              <th style="width: 150px;">Timestamp</th>
+              <th>Flagged Attack Class</th>
+              <th style="width: 130px;">Confidence</th>
+              <th>Endpoints</th>
+              <th style="width: 70px;">Proto</th>
+              <th style="width: 110px;">Model</th>
+              <th style="width: 110px;">Status</th>
+              <th style="width: 100px;">Action</th>
+            </tr>
+          </thead>
+          <tbody id="events-tbody">
+            <tr>
+              <td colspan="9" class="empty-state">
+                <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                <div>No detection events recorded. All evaluated traffic has been classified as benign.</div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- TAB 4: DATABASE & FLOW HISTORY -->
+  <!-- ========================================== -->
+  <div class="tab-pane" id="tab-history">
+    <!-- Upload Runs History Card -->
+    <section class="card" id="section-runs-history">
+      <div class="card-header">
+        <div>
+          <h2 class="card-title">
+            <svg viewBox="0 0 24 24"><path d="M13 3c-4.97 0-9 4.03-9 9H1l3.89 3.89.07.14L9 12H6c0-3.87 3.13-7 7-7s7 3.13 7 7-3.13 7-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42C8.27 19.99 10.51 21 13 21c4.97 0 9-4.03 9-9s-4.03-9-9-9zm-1 5v5l4.28 2.54.72-1.21-3.5-2.08V8H12z"/></svg>
+            Historical Ingestion Runs
+          </h2>
+          <p class="card-subtitle">Stored runs in SQLite (<code>nids.sqlite</code>)</p>
+        </div>
+        <button class="btn btn-outline btn-sm" id="btn-refresh-runs" type="button">Refresh</button>
+      </div>
+
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Run ID</th>
+              <th>Uploaded At</th>
+              <th>Filename / Source</th>
+              <th>Total Rows</th>
+              <th>Scored Rows</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="runs-history-tbody">
+            <tr><td colspan="7" style="text-align: center; color: var(--text-dim); padding: 24px;">Loading runs…</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Capture Sessions History -->
+    <section class="card" id="section-sessions-history">
+      <div class="card-header">
+        <div>
+          <h2 class="card-title">
+            <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/></svg>
+            Live Capture Sessions History
+          </h2>
+          <p class="card-subtitle">Sessions logged in <code>capture_sessions</code> table</p>
+        </div>
+      </div>
+
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Session ID</th>
+              <th>Started At</th>
+              <th>Interface</th>
+              <th>Packets</th>
+              <th>Flows</th>
+              <th>Alerts</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="sessions-history-tbody">
+            <tr><td colspan="7" class="empty-state">No live capture sessions recorded.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- TAB 5: MODEL SPECS & HELD-OUT EVALUATION -->
+  <!-- ========================================== -->
+  <div class="tab-pane" id="tab-evaluation">
+    <!-- Verified Holdout Metrics Grid -->
+    <section class="overview-grid">
+      <div class="stat-card">
+        <div class="stat-header">
+          <span class="stat-label">Holdout Accuracy</span>
+          <div class="stat-icon"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
+        </div>
+        <div class="stat-value" style="color: #34d399;">99.89%</div>
+        <div class="stat-footer">565,497 / 566,110 correct</div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-header">
+          <span class="stat-label">Benign False Positive Rate</span>
+          <div class="stat-icon"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg></div>
+        </div>
+        <div class="stat-value" style="color: #60a5fa;">0.064%</div>
+        <div class="stat-footer">292 false alarms out of 454,595</div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-header">
+          <span class="stat-label">Attack Missed Detection Rate</span>
+          <div class="stat-icon"><svg viewBox="0 0 24 24"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg></div>
+        </div>
+        <div class="stat-value" style="color: #f59e0b;">0.149%</div>
+        <div class="stat-footer">166 missed out of 111,515 attacks</div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-header">
+          <span class="stat-label">Attack Recall (Qualified)</span>
+          <div class="stat-icon"><svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/></svg></div>
+        </div>
+        <div class="stat-value" style="color: #34d399;">99.85%</div>
+        <div class="stat-footer">111,349/111,515 detected (DoS/PortScan 92.9%; XSS: 10.77%, Bot: 67.43%)</div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-header">
+          <span class="stat-label">Macro F1 (12 / 15) | Weighted F1</span>
+          <div class="stat-icon"><svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"/></svg></div>
+        </div>
+        <div class="stat-value" style="font-size: 1.35rem; color: #fff;">0.897 / 0.717 | 0.999</div>
+        <div class="stat-footer">Exact-duplicate-free split (12 supported / 15 total classes)</div>
+      </div>
+    </section>
+
+    <!-- Model Technical Specifications Card -->
+    <section class="card" id="card-specs">
+      <div class="card-header">
+        <div>
+          <h2 class="card-title">
+            <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+            Active Model Specifications & Independent Evaluation Provenance
+          </h2>
+          <p class="card-subtitle">Certified XGBoost Replacement v2 Architecture vs Baseline v1</p>
+        </div>
+        <span class="badge badge-success">Split Integrity: Exact-Duplicate-Free Split</span>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px;">
+        <div style="background: rgba(255,255,255,0.03); padding: 14px; border-radius: var(--radius-sm); border: 1px solid var(--border-subtle);">
+          <div style="font-size: 0.74rem; color: var(--text-dim); text-transform: uppercase;">Architecture & Parameters</div>
+          <div style="font-size: 0.92rem; font-weight: 600; color: #fff; margin-top: 4px;">XGBoost (Histogram Booster)</div>
+          <div style="font-size: 0.78rem; color: var(--text-muted); margin-top: 4px;">Boosting rounds: 100 | Trees: 1,500 (100 rounds x 15 classes) | Max Depth: 6 | 63 features. In-distribution estimate from 1 split.</div>
+        </div>
+
+        <div style="background: rgba(255,255,255,0.03); padding: 14px; border-radius: var(--radius-sm); border: 1px solid var(--border-subtle);">
+          <div style="font-size: 0.74rem; color: var(--text-dim); text-transform: uppercase;">Dataset Partitioning</div>
+          <div style="font-size: 0.92rem; font-weight: 600; color: #34d399; margin-top: 4px;">80% Train / 20% Held-Out Test</div>
+          <div style="font-size: 0.78rem; color: var(--text-muted); margin-top: 4px;">Train: 2,264,633 | Test: 566,110 | Exact-duplicate-free split (0 exact-vector collisions). 698 conflicting groups (7,020 rows): 555 train, 143 test, 0 cross-partition.</div>
+        </div>
+
+        <div style="background: rgba(255,255,255,0.03); padding: 14px; border-radius: var(--radius-sm); border: 1px solid var(--border-subtle);">
+          <div style="font-size: 0.74rem; color: var(--text-dim); text-transform: uppercase;">Confidence Semantics</div>
+          <div style="font-size: 0.92rem; font-weight: 600; color: #f59e0b; margin-top: 4px;">Uncalibrated Softmax Score</div>
+          <div style="font-size: 0.78rem; color: var(--text-muted); margin-top: 4px;">Confidence scores are uncalibrated softmax scores and do not establish correctness or empirical threat likelihood.</div>
+        </div>
+
+        <div style="background: rgba(255,255,255,0.03); padding: 14px; border-radius: var(--radius-sm); border: 1px solid var(--border-subtle);">
+          <div style="font-size: 0.74rem; color: var(--text-dim); text-transform: uppercase;">Known Model Limitations</div>
+          <div style="font-size: 0.92rem; font-weight: 600; color: #f87171; margin-top: 4px;">3 Zero-Test Classes & Baseline v1 Unevaluated</div>
+          <div style="font-size: 0.78rem; color: var(--text-muted); margin-top: 4px;">Heartbleed, Infiltration, and SQL Injection have 0 test rows (unevaluated). replacement_v1 is unevaluated by v2 test. Bot recall: 67.43%. XSS: 10.77% (grouped: 96.92%).</div>
+        </div>
+      </div>
+
+      <!-- Feature Schema Tags -->
+      <div style="margin-top: 10px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+          <span style="font-size: 0.82rem; font-weight: 600; color: var(--text-muted);">Required 63 Canonical Input Features:</span>
+          <span style="font-size: 0.75rem; color: var(--text-dim);" id="feature-count-badge">63 Features</span>
+        </div>
+        <div class="feature-tag-list" id="eval-features-container">
+          <span style="color: var(--text-dim); font-size: 0.75rem;">Loading feature contract…</span>
+        </div>
+      </div>
+    </section>
+  </div>
+</main>
+
+<!-- Flow Details Modal -->
+<div class="modal-backdrop" id="flow-modal-backdrop">
+  <div class="modal-box">
+    <div class="modal-header">
+      <div>
+        <h3 class="modal-title">Flow Diagnostic Details</h3>
+        <p style="font-size: 0.78rem; color: var(--text-muted);" id="modal-flow-id">Flow ID: —</p>
+      </div>
+      <button class="modal-close" id="btn-close-modal" type="button">&times;</button>
+    </div>
+
+    <div class="flow-kv-grid" id="modal-kv-grid">
+      <!-- Injected via JavaScript -->
+    </div>
+
+    <div style="display: flex; justify-content: flex-end; margin-top: 10px;">
+      <button class="btn btn-outline" id="btn-modal-dismiss" type="button">Close</button>
+    </div>
+  </div>
+</div>
+
+<footer>
+  CIC-IDS-2017 Multiclass Intrusion Detection System · Windows 11 Automated Diagnostic Runtime · Passive Authorized Monitoring Only
+</footer>
+
+<script>
+// Attack Class Color Palette & Badge Helper
+const ATTACK_COLORS = {
+  'BENIGN': { dot: '#10b981', pill: 'pill-benign' },
+  'DDoS': { dot: '#ef4444', pill: 'pill-ddos' },
+  'DoS Hulk': { dot: '#f97316', pill: 'pill-dos' },
+  'DoS GoldenEye': { dot: '#f59e0b', pill: 'pill-dos' },
+  'DoS Slowhttptest': { dot: '#eab308', pill: 'pill-dos' },
+  'DoS slowloris': { dot: '#d97706', pill: 'pill-dos' },
+  'PortScan': { dot: '#3b82f6', pill: 'pill-scan' },
+  'FTP-Patator': { dot: '#8b5cf6', pill: 'pill-web' },
+  'SSH-Patator': { dot: '#a855f7', pill: 'pill-web' },
+  'Bot': { dot: '#ec4899', pill: 'pill-bot' },
+  'Infiltration': { dot: '#06b6d4', pill: 'pill-other' },
+  'Heartbleed': { dot: '#f43f5e', pill: 'pill-other' }
+};
+
+function getClassStyle(clsName) {
+  if (!clsName) return { dot: '#94a3b8', pill: 'pill-other', cleanName: 'UNKNOWN' };
+  let clean = clsName.replace(/\ufffd/g, '·');
+  for (const [key, val] of Object.entries(ATTACK_COLORS)) {
+    if (clsName.includes(key) || key.includes(clsName)) {
+      return { ...val, cleanName: clean };
+    }
+  }
+  if (clsName.includes('Web Attack')) {
+    return { dot: '#c084fc', pill: 'pill-web', cleanName: clean };
+  }
+  return { dot: '#94a3b8', pill: 'pill-other', cleanName: clean };
+}
+
+function escapeHtml(str) {
+  return String(str ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
+function formatBytes(bytes) {
+  if (!bytes || bytes === 0) return '0 B';
+  const k = 1024;
+  const sizes = ['B', 'KB', 'MB', 'GB'];
+  const i = Math.floor(Math.log(bytes) / Math.log(k));
+  return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+}
+
+// Global State
+const state = {
+  activeTab: 'tab-live',
+  activeModel: 'replacement_v2',
+  availableModels: [],
+  allFeatures: [],
+  summary: null,
+  live: {
+    isRunning: false,
+    pollInterval: null,
+    isPaused: false,
+    flows: [],
+    stats: {},
+    sessionId: null
+  },
+  events: [],
+  eventsFilter: 'ALL',
+  csv: {
+    activeRunPredictions: [],
+    activeRunCounts: {},
+    activeRunId: null,
+    activeFilename: null,
+    distView: 'current',
+    table: {
+      page: 1,
+      pageSize: 25,
+      search: '',
+      classFilter: 'ALL',
+      sort: 'row_asc',
+      filtered: []
+    }
+  }
+};
+
+// API Helper
+async function api(path, options={}) {
+  const response = await fetch(path, options);
+  const data = await response.json().catch(() => ({}));
+  if (!response.ok) {
+    let msg = data.detail || `Request failed (${response.status})`;
+    if (typeof msg !== 'string') msg = JSON.stringify(msg);
+    throw new Error(msg);
+  }
+  return data;
+}
+
+// Tab Switching
+document.querySelectorAll('.nav-tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const target = btn.dataset.tab;
+    switchTab(target);
+  });
+});
+
+function switchTab(tabId) {
+  state.activeTab = tabId;
+  document.querySelectorAll('.nav-tab-btn').forEach(b => b.classList.toggle('active', b.dataset.tab === tabId));
+  document.querySelectorAll('.tab-pane').forEach(p => p.classList.toggle('active', p.id === tabId));
+  
+  if (tabId === 'tab-events') loadDetectionEvents();
+  if (tabId === 'tab-history') { loadRuns(); loadSessions(); }
+}
+
+// Initialize Application
+async function init() {
+  setupModelSelector();
+  setupModal();
+  setupLiveCapture();
+  setupCsvUpload();
+  setupCsvTable();
+
+  await Promise.allSettled([
+    loadHealth(),
+    loadFeatures(),
+    loadCaptureInterfaces(),
+    loadCaptureStatus(),
+    loadSummary(),
+    loadDetectionEvents()
+  ]);
+
+  // Periodic Polling
+  setInterval(pollSystemTelemetry, 2500);
+
+  const urlParams = new URLSearchParams(window.location.search);
+  const inspectRunId = urlParams.get('run_id');
+  const requestedTab = urlParams.get('tab');
+  if (inspectRunId) {
+    inspectHistoricRun(inspectRunId, 'nids_stage3b_plumbing_15.csv');
+  } else if (requestedTab) {
+    switchTab(requestedTab);
+  }
+}
+
+// System Telemetry & Health
+async function loadHealth() {
+  try {
+    const health = await api('/health');
+    state.activeModel = health.model_version || 'replacement_v2';
+    state.availableModels = health.models_available || [];
+    
+    const selector = document.querySelector('#model-version-selector');
+    if (selector) selector.value = state.activeModel;
+
+    const healthBadge = document.querySelector('#system-health-badge');
+    if (health.database_connected) {
+      healthBadge.className = 'badge badge-success';
+      healthBadge.innerHTML = '<span class="pulse-dot"></span> System Ready';
+    } else {
+      healthBadge.className = 'badge badge-warning';
+      healthBadge.innerHTML = '<span class="pulse-dot pulse-gray"></span> DB Warning';
+    }
+  } catch (e) {
+    console.error('Health check error:', e);
+  }
+}
+
+async function pollSystemTelemetry() {
+  if (state.live.isRunning && !state.live.isPaused) {
+    await fetchLiveTelemetry();
+  }
+}
+
+// Model Switching
+function setupModelSelector() {
+  const selector = document.querySelector('#model-version-selector');
+  selector.addEventListener('change', async (e) => {
+    const newVersion = e.target.value;
+    try {
+      const res = await api('/model/select', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ model_version: newVersion })
+      });
+      state.activeModel = res.active_model;
+      alert(`Model switched successfully to ${res.active_model}`);
+      loadSummary();
+    } catch (err) {
+      alert(`Failed to switch model: ${err.message}`);
+      selector.value = state.activeModel;
+    }
+  });
+}
+
+// Features
+async function loadFeatures() {
+  try {
+    const data = await api('/features');
+    state.allFeatures = data.features || [];
+    document.querySelector('#feature-count-badge').textContent = `${state.allFeatures.length} Features`;
+    const container = document.querySelector('#eval-features-container');
+    if (state.allFeatures.length) {
+      container.innerHTML = state.allFeatures.map(f => `<span class="feature-tag">${escapeHtml(f)}</span>`).join('');
+    }
+  } catch (e) {
+    console.error('Feature load error:', e);
+  }
+}
+
+// Live Capture Functions
+async function loadCaptureInterfaces() {
+  try {
+    const data = await api('/capture/interfaces');
+    const select = document.querySelector('#capture-interface-select');
+    select.innerHTML = '';
+    (data.interfaces || []).forEach(iface => {
+      const opt = document.createElement('option');
+      opt.value = iface.identifier || iface.device_id || iface.name;
+      opt.textContent = `${iface.name} (${iface.description || 'Adapter'}) — [${iface.status}]`;
+      if (iface.is_loopback) opt.selected = true;
+      select.appendChild(opt);
+    });
+  } catch (e) {
+    console.error('Capture interfaces error:', e);
+  }
+}
+
+async function loadCaptureStatus() {
+  try {
+    const status = await api('/capture/status');
+    updateCaptureUiState(status);
+  } catch (e) {
+    console.error('Capture status error:', e);
+  }
+}
+
+function updateCaptureUiState(status) {
+  const isRunning = status.status === 'RUNNING';
+  state.live.isRunning = isRunning;
+
+  const badge = document.querySelector('#capture-status-badge');
+  const dot = document.querySelector('#capture-pulse-dot');
+  const text = document.querySelector('#capture-status-text');
+  const startBtn = document.querySelector('#btn-start-capture');
+  const stopBtn = document.querySelector('#btn-stop-capture');
+  const sessionBadge = document.querySelector('#live-session-badge');
+
+  if (isRunning) {
+    badge.className = 'badge badge-danger';
+    dot.className = 'pulse-dot pulse-red';
+    text.textContent = 'Capture: RUNNING';
+    startBtn.disabled = true;
+    stopBtn.disabled = false;
+    sessionBadge.textContent = `Session: ${status.session_id ? status.session_id.slice(0,8) : 'active'}`;
+  } else {
+    badge.className = 'badge badge-warning';
+    dot.className = 'pulse-dot pulse-gray';
+    text.textContent = 'Capture: STOPPED';
+    startBtn.disabled = false;
+    stopBtn.disabled = true;
+    sessionBadge.textContent = 'Session: Inactive';
+  }
+}
+
+function setupLiveCapture() {
+  const startBtn = document.querySelector('#btn-start-capture');
+  const stopBtn = document.querySelector('#btn-stop-capture');
+  const simBtn = document.querySelector('#btn-simulate-traffic');
+  const pauseBtn = document.querySelector('#btn-pause-live-feed');
+  const clearBtn = document.querySelector('#btn-clear-live-flows');
+  const errBanner = document.querySelector('#capture-error-banner');
+  const errText = document.querySelector('#capture-error-text');
+
+  if (simBtn) {
+    simBtn.addEventListener('click', async () => {
+      try {
+        simBtn.disabled = true;
+        await api('/capture/simulate', { method: 'POST' });
+        updateCaptureUiState({ status: 'RUNNING' });
+        await fetchLiveTelemetry();
+      } catch (err) {
+        console.error('Simulate error:', err);
+      } finally {
+        simBtn.disabled = false;
+      }
+    });
+  }
+
+  startBtn.addEventListener('click', async () => {
+    errBanner.classList.remove('visible');
+    const selectedIface = document.querySelector('#capture-interface-select').value;
+    const enableInference = document.querySelector('#chk-enable-inference').checked;
+
+    try {
+      startBtn.disabled = true;
+      const res = await api('/capture/start', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          interface: selectedIface,
+          enable_inference: enableInference,
+          isolated_db: true
+        })
+      });
+      updateCaptureUiState({ status: 'RUNNING', session_id: res.session_id });
+      await fetchLiveTelemetry();
+    } catch (err) {
+      errBanner.classList.add('visible');
+      errText.textContent = `Failed to start capture: ${err.message}`;
+      startBtn.disabled = false;
+    }
+  });
+
+  stopBtn.addEventListener('click', async () => {
+    try {
+      stopBtn.disabled = true;
+      const res = await api('/capture/stop', { method: 'POST' });
+      updateCaptureUiState({ status: 'STOPPED' });
+      await fetchLiveTelemetry();
+    } catch (err) {
+      alert(`Failed to stop capture: ${err.message}`);
+      stopBtn.disabled = false;
+    }
+  });
+
+  pauseBtn.addEventListener('click', () => {
+    state.live.isPaused = !state.live.isPaused;
+    document.querySelector('#btn-pause-text').textContent = state.live.isPaused ? 'Resume Stream' : 'Pause Stream';
+    pauseBtn.style.color = state.live.isPaused ? '#f59e0b' : 'inherit';
+  });
+
+  clearBtn.addEventListener('click', () => {
+    state.live.flows = [];
+    renderLiveFlows([]);
+  });
+}
+
+async function fetchLiveTelemetry() {
+  try {
+    const [stats, flowsData] = await Promise.allSettled([
+      api('/capture/status'),
+      api('/capture/flows?limit=50')
+    ]);
+
+    if (stats.status === 'fulfilled') {
+      const s = stats.value;
+      document.querySelector('#val-live-packets').textContent = (s.packets_captured || 0).toLocaleString();
+      document.querySelector('#val-live-active-flows').textContent = (s.active_flows || 0).toLocaleString();
+      document.querySelector('#val-live-classified').textContent = (s.flows_classified || 0).toLocaleString();
+      document.querySelector('#val-live-attacks').textContent = (s.attacks_detected || 0).toLocaleString();
+      document.querySelector('#val-live-benign').textContent = (s.benign_flows || 0).toLocaleString();
+      
+      const elapsed = s.elapsed_seconds || 1;
+      const rate = ((s.packets_captured || 0) / Math.max(1, elapsed)).toFixed(1);
+      document.querySelector('#val-live-rate').textContent = `${rate} pkts/sec (${elapsed}s)`;
+    }
+
+    if (flowsData.status === 'fulfilled' && !state.live.isPaused) {
+      const items = flowsData.value.flows || flowsData.value.items || [];
+      renderLiveFlows(items);
+    }
+  } catch (e) {
+    console.error('Telemetry fetch error:', e);
+  }
+}
+
+function renderLiveFlows(flows) {
+  const tbody = document.querySelector('#live-flows-tbody');
+  if (!flows || !flows.length) {
+    tbody.innerHTML = `
+      <tr>
+        <td colspan="9" class="empty-state">
+          <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+          <div>Waiting for completed network flows… Generating local traffic (e.g. HTTP) will construct flows.</div>
+        </td>
+      </tr>
+    `;
+    return;
+  }
+
+  tbody.innerHTML = flows.map(f => {
+    const protoStr = f.protocol === 6 ? 'TCP' : (f.protocol === 17 ? 'UDP' : String(f.protocol || '—'));
+    const durMs = f.duration_us ? (f.duration_us / 1000).toFixed(1) + ' ms' : '—';
+    const predClass = f.predicted_class || 'PENDING';
+    const style = getClassStyle(predClass);
+    const conf = f.confidence != null ? (f.confidence * 100).toFixed(1) + '%' : '—';
+
+    return `
+      <tr>
+        <td><code style="font-family: var(--font-mono); color: #93c5fd; font-size: 0.78rem;">${escapeHtml(f.flow_id ? f.flow_id.slice(0, 10) : '—')}</code></td>
+        <td><span class="badge badge-primary" style="padding: 2px 6px; font-size: 0.7rem;">${protoStr}</span></td>
+        <td><span style="font-family: var(--font-mono); font-size: 0.8rem; color: #fff;">${escapeHtml(f.src_ip || '—')}:${f.src_port || '—'}</span></td>
+        <td><span style="font-family: var(--font-mono); font-size: 0.8rem; color: #cbd5e1;">${escapeHtml(f.dst_ip || '—')}:${f.dst_port || '—'}</span></td>
+        <td>${durMs}</td>
+        <td><strong>${f.packets || f.total_packets || 0}</strong></td>
+        <td><span class="class-pill ${style.pill}">${escapeHtml(style.cleanName)}</span></td>
+        <td>
+          <div class="confidence-meter">
+            <span style="font-family: var(--font-mono); font-size: 0.78rem;">${conf}</span>
+            <div class="confidence-bar-bg"><div class="confidence-bar-val" style="width: ${conf !== '—' ? conf : '0%'}; background: ${style.dot};"></div></div>
+          </div>
+        </td>
+        <td>
+          <button class="btn btn-outline btn-sm" type="button" onclick="showFlowDetails('${escapeHtml(encodeURIComponent(JSON.stringify(f)))}')">
+            Inspect
+          </button>
+        </td>
+      </tr>
+    `;
+  }).join('');
+}
+
+// Detection Events
+async function loadDetectionEvents() {
+  try {
+    const filter = document.querySelector('#events-status-filter').value;
+    const url = `/events?limit=50${filter === 'PENDING' ? '&unacknowledged_only=true' : ''}`;
+    const data = await api(url);
+    const events = data.events || data.items || [];
+    state.events = events;
+
+    const total = data.total || events.length;
+    const pending = events.filter(e => !e.acknowledged).length;
+    const acked = events.filter(e => e.acknowledged).length;
+
+    document.querySelector('#val-events-total').textContent = total.toLocaleString();
+    document.querySelector('#val-events-pending').textContent = pending.toLocaleString();
+    document.querySelector('#val-events-acked').textContent = acked.toLocaleString();
+    document.querySelector('#tab-events-badge').textContent = pending;
+
+    const tbody = document.querySelector('#events-tbody');
+    if (!events.length) {
+      tbody.innerHTML = `
+        <tr>
+          <td colspan="9" class="empty-state">
+            <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+            <div>No detection events recorded. Traffic is benign or no attack predictions generated.</div>
+          </td>
+        </tr>
+      `;
+      return;
+    }
+
+    tbody.innerHTML = events.map(e => {
+      const style = getClassStyle(e.predicted_class);
+      const conf = e.confidence != null ? (e.confidence * 100).toFixed(1) + '%' : '—';
+      const endpoints = (e.src_endpoint && e.dst_endpoint) ? `${e.src_endpoint} -> ${e.dst_endpoint}` : ((e.src_ip && e.dst_ip) ? `${e.src_ip}:${e.src_port || ''} -> ${e.dst_ip}:${e.dst_port || ''}` : 'Flow ' + (e.flow_id || '—'));
+      const isAck = !!e.acknowledged;
+
+      return `
+        <tr>
+          <td><strong style="color: #fff; font-family: var(--font-mono);">#${e.id}</strong></td>
+          <td style="font-size: 0.78rem;">${escapeHtml(e.timestamp ? new Date(e.timestamp).toLocaleTimeString() : '—')}</td>
+          <td><span class="class-pill ${style.pill}">${escapeHtml(style.cleanName)}</span></td>
+          <td><strong style="font-family: var(--font-mono); color: #fff;">${conf}</strong></td>
+          <td><code style="font-size: 0.78rem; color: #94a3b8;">${escapeHtml(endpoints)}</code></td>
+          <td>${e.protocol === 6 ? 'TCP' : (e.protocol === 17 ? 'UDP' : (e.protocol || '—'))}</td>
+          <td><span style="font-size: 0.74rem; color: var(--text-dim);">${escapeHtml(e.model_version || 'v2')}</span></td>
+          <td>
+            <span class="badge ${isAck ? 'badge-success' : 'badge-danger'}" style="font-size: 0.7rem; padding: 2px 6px;">
+              ${isAck ? 'ACKNOWLEDGED' : 'PENDING'}
+            </span>
+          </td>
+          <td>
+            ${!isAck ? `
+              <button class="btn btn-outline btn-sm" type="button" onclick="ackEvent('${escapeHtml(e.event_id || e.id)}')">
+                Acknowledge
+              </button>
+            ` : '<span style="color: var(--text-dim); font-size: 0.75rem;">Acked</span>'}
+          </td>
+        </tr>
+      `;
+    }).join('');
+  } catch (err) {
+    console.error('Events load error:', err);
+  }
+}
+
+async function ackEvent(eventId) {
+  try {
+    await api(`/events/${eventId}/ack`, { method: 'POST' });
+    loadDetectionEvents();
+  } catch (e) {
+    alert(`Could not acknowledge event: ${e.message}`);
+  }
+}
+
+document.querySelector('#btn-refresh-events').addEventListener('click', loadDetectionEvents);
+document.querySelector('#events-status-filter').addEventListener('change', loadDetectionEvents);
+
+// CSV Upload & Explorer
+function setupCsvUpload() {
+  const dropzone = document.querySelector('#upload-dropzone');
+  const fileInput = document.querySelector('#csv-file-input');
+  const scoreBtn = document.querySelector('#btn-score-upload');
+  const selContainer = document.querySelector('#selected-file-container');
+  const selName = document.querySelector('#selected-file-name');
+  const selSize = document.querySelector('#selected-file-size');
+  const clearBtn = document.querySelector('#btn-clear-file');
+  const errBanner = document.querySelector('#upload-error-banner');
+  const errText = document.querySelector('#upload-error-text');
+  const succBanner = document.querySelector('#upload-success-banner');
+  const succText = document.querySelector('#upload-success-text');
+
+  dropzone.addEventListener('click', () => fileInput.click());
+  dropzone.addEventListener('dragover', (e) => { e.preventDefault(); dropzone.classList.add('drag-active'); });
+  dropzone.addEventListener('dragleave', () => dropzone.classList.remove('drag-active'));
+  dropzone.addEventListener('drop', (e) => {
+    e.preventDefault();
+    dropzone.classList.remove('drag-active');
+    if (e.dataTransfer.files.length) handleFile(e.dataTransfer.files[0]);
+  });
+  fileInput.addEventListener('change', () => {
+    if (fileInput.files.length) handleFile(fileInput.files[0]);
+  });
+
+  function handleFile(file) {
+    errBanner.classList.remove('visible');
+    succBanner.classList.remove('visible');
+    if (!file.name.toLowerCase().endsWith('.csv')) {
+      errBanner.classList.add('visible');
+      errText.textContent = 'Please select a valid .csv file.';
+      return;
+    }
+    selName.textContent = file.name;
+    selSize.textContent = `(${formatBytes(file.size)})`;
+    selContainer.style.display = 'flex';
+    dropzone.style.display = 'none';
+    scoreBtn.disabled = false;
+  }
+
+  clearBtn.addEventListener('click', () => {
+    fileInput.value = '';
+    selContainer.style.display = 'none';
+    dropzone.style.display = 'block';
+    scoreBtn.disabled = true;
+  });
+
+  scoreBtn.addEventListener('click', async () => {
+    const file = fileInput.files[0];
+    if (!file) return;
+
+    scoreBtn.disabled = true;
+    errBanner.classList.remove('visible');
+    succBanner.classList.remove('visible');
+
+    try {
+      const formData = new FormData();
+      formData.append('file', file);
+      const res = await api('/score', { method: 'POST', body: formData });
+
+      succBanner.classList.add('visible');
+      succText.innerHTML = `<strong>Inference Complete:</strong> Scored <strong>${res.row_count.toLocaleString()}</strong> flows with model <code>${escapeHtml(res.model_version)}</code>. Run ID: <code>${escapeHtml(res.run_id)}</code>.`;
+
+      state.csv.activeRunId = res.run_id;
+      state.csv.activeFilename = res.filename;
+      state.csv.activeRunPredictions = res.predictions || [];
+      state.csv.activeRunCounts = res.class_counts || {};
+
+      renderDistribution(res.class_counts || {}, res.row_count || 0);
+      updateCsvClassFilterOptions(res.class_counts || {});
+      applyCsvTableFilters();
+
+      loadSummary();
+      loadRuns();
+      document.querySelector('#section-distribution').scrollIntoView({ behavior: 'smooth' });
+    } catch (err) {
+      errBanner.classList.add('visible');
+      errText.textContent = `Scoring error: ${err.message}`;
+    } finally {
+      scoreBtn.disabled = false;
+    }
+  });
+}
+
+async function loadSummary() {
+  try {
+    const summary = await api('/summary');
+    state.summary = summary;
+    document.querySelector('#val-csv-received').textContent = (summary.rows_received || 0).toLocaleString();
+    document.querySelector('#val-csv-scored').textContent = (summary.rows_scored || 0).toLocaleString();
+    document.querySelector('#val-csv-unscored').textContent = (summary.rows_not_scored || 0).toLocaleString();
+    document.querySelector('#val-csv-runs').textContent = (summary.runs || 0).toLocaleString();
+
+    const distinct = summary.class_counts ? Object.keys(summary.class_counts).length : 0;
+    document.querySelector('#val-csv-classes').textContent = distinct;
+
+    if (state.csv.distView === 'all') {
+      renderDistribution(summary.class_counts || {}, summary.rows_scored || 0);
+    }
+  } catch (e) {
+    console.error('Summary error:', e);
+  }
+}
+
+function renderDistribution(counts, total) {
+  const container = document.querySelector('#distribution-bars-container');
+  const entries = Object.entries(counts).sort((a, b) => b[1] - a[1]);
+
+  if (!entries.length || total === 0) {
+    container.innerHTML = `
+      <div class="empty-state">
+        <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+        <div>No class distribution available for this selection.</div>
+      </div>
+    `;
+    return;
+  }
+
+  container.innerHTML = entries.map(([cls, count]) => {
+    const style = getClassStyle(cls);
+    const pct = total > 0 ? ((count / total) * 100).toFixed(2) : '0.00';
+    return `
+      <div class="distribution-item">
+        <div class="dist-meta">
+          <span style="display: flex; align-items: center; gap: 8px;">
+            <span style="width: 8px; height: 8px; border-radius: 50%; background: ${style.dot};"></span>
+            <strong style="color: #fff;">${escapeHtml(style.cleanName)}</strong>
+          </span>
+          <span style="color: var(--text-muted); font-size: 0.78rem;">
+            <strong>${count.toLocaleString()}</strong> flows (${pct}%)
+          </span>
+        </div>
+        <div class="dist-bar-track">
+          <div class="dist-bar-fill" style="width: ${pct}%; background: ${style.dot};"></div>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+// CSV Table Filters & Pagination
+function setupCsvTable() {
+  document.querySelector('#filter-search-input').addEventListener('input', (e) => {
+    state.csv.table.search = e.target.value;
+    applyCsvTableFilters();
+  });
+  document.querySelector('#filter-class-select').addEventListener('change', (e) => {
+    state.csv.table.classFilter = e.target.value;
+    applyCsvTableFilters();
+  });
+  document.querySelector('#sort-select').addEventListener('change', (e) => {
+    state.csv.table.sort = e.target.value;
+    applyCsvTableFilters();
+  });
+  document.querySelector('#page-size-select').addEventListener('change', (e) => {
+    state.csv.table.pageSize = parseInt(e.target.value, 10);
+    state.csv.table.page = 1;
+    applyCsvTableFilters();
+  });
+  document.querySelector('#btn-page-prev').addEventListener('click', () => {
+    if (state.csv.table.page > 1) {
+      state.csv.table.page--;
+      renderCsvTable();
+    }
+  });
+  document.querySelector('#btn-page-next').addEventListener('click', () => {
+    const maxPage = Math.ceil(state.csv.table.filtered.length / state.csv.table.pageSize);
+    if (state.csv.table.page < maxPage) {
+      state.csv.table.page++;
+      renderCsvTable();
+    }
+  });
+
+  document.querySelector('#btn-toggle-current').addEventListener('click', () => {
+    state.csv.distView = 'current';
+    document.querySelector('#btn-toggle-current').style.background = 'rgba(59,130,246,0.2)';
+    document.querySelector('#btn-toggle-current').style.color = '#93c5fd';
+    document.querySelector('#btn-toggle-all').style.background = 'transparent';
+    document.querySelector('#btn-toggle-all').style.color = 'var(--text-main)';
+    renderDistribution(state.csv.activeRunCounts, state.csv.activeRunPredictions.length);
+  });
+
+  document.querySelector('#btn-toggle-all').addEventListener('click', () => {
+    state.csv.distView = 'all';
+    document.querySelector('#btn-toggle-all').style.background = 'rgba(59,130,246,0.2)';
+    document.querySelector('#btn-toggle-all').style.color = '#93c5fd';
+    document.querySelector('#btn-toggle-current').style.background = 'transparent';
+    document.querySelector('#btn-toggle-current').style.color = 'var(--text-main)';
+    if (state.summary) {
+      renderDistribution(state.summary.class_counts || {}, state.summary.rows_scored || 0);
+    }
+  });
+
+  document.querySelector('#btn-export-csv').addEventListener('click', () => {
+    if (!state.csv.table.filtered.length) return;
+    const rows = [['row_id', 'predicted_class', 'confidence', 'not_scored', 'run_id']];
+    for (const item of state.csv.table.filtered) {
+      rows.push([
+        item.row_id,
+        item.predicted_class || 'UNKNOWN',
+        item.confidence != null ? item.confidence.toFixed(6) : '',
+        item.not_scored ? 1 : 0,
+        state.csv.activeRunId || ''
+      ]);
+    }
+    const csvContent = 'data:text/csv;charset=utf-8,' + rows.map(r => r.join(',')).join('\n');
+    const link = document.createElement('a');
+    link.href = encodeURI(csvContent);
+    link.download = `nids_predictions_${state.csv.activeRunId ? state.csv.activeRunId.slice(0,8) : 'export'}.csv`;
+    link.click();
+  });
+}
+
+function updateCsvClassFilterOptions(counts) {
+  const select = document.querySelector('#filter-class-select');
+  select.innerHTML = '<option value="ALL">All Predicted Classes</option><option value="ATTACKS_ONLY">Attacks Only (Excl. BENIGN)</option>';
+  for (const cls of Object.keys(counts).sort()) {
+    const opt = document.createElement('option');
+    opt.value = cls;
+    opt.textContent = cls.replace(/\ufffd/g, '·');
+    select.appendChild(opt);
+  }
+}
+
+function applyCsvTableFilters() {
+  const { search, classFilter, sort } = state.csv.table;
+  let filtered = state.csv.activeRunPredictions.filter(item => {
+    if (classFilter === 'ATTACKS_ONLY' && item.predicted_class === 'BENIGN') return false;
+    if (classFilter !== 'ALL' && classFilter !== 'ATTACKS_ONLY' && item.predicted_class !== classFilter) return false;
+    if (search) {
+      const rowMatch = String(item.row_id).includes(search);
+      const clsMatch = (item.predicted_class || '').toLowerCase().includes(search.toLowerCase());
+      if (!rowMatch && !clsMatch) return false;
+    }
+    return true;
+  });
+
+  filtered.sort((a, b) => {
+    if (sort === 'row_asc') return a.row_id - b.row_id;
+    if (sort === 'row_desc') return b.row_id - a.row_id;
+    if (sort === 'conf_desc') return (b.confidence ?? 0) - (a.confidence ?? 0);
+    if (sort === 'conf_asc') return (a.confidence ?? 0) - (b.confidence ?? 0);
+    return 0;
+  });
+
+  state.csv.table.filtered = filtered;
+  state.csv.table.page = 1;
+  renderCsvTable();
+}
+
+function renderCsvTable() {
+  const tbody = document.querySelector('#predictions-table-body');
+  const { filtered, page, pageSize } = state.csv.table;
+  const total = filtered.length;
+
+  document.querySelector('#btn-export-csv').disabled = total === 0;
+
+  if (total === 0) {
+    tbody.innerHTML = `
+      <tr>
+        <td colspan="5" class="empty-state">
+          <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+          <div>No matching flow records. Adjust filters or search parameters.</div>
+        </td>
+      </tr>
+    `;
+    document.querySelector('#pagination-info').textContent = 'Showing 0 of 0 flows';
+    document.querySelector('#btn-page-prev').disabled = true;
+    document.querySelector('#btn-page-next').disabled = true;
+    return;
+  }
+
+  const maxPage = Math.max(1, Math.ceil(total / pageSize));
+  const currentPage = Math.min(Math.max(1, page), maxPage);
+  state.csv.table.page = currentPage;
+
+  const startIdx = (currentPage - 1) * pageSize;
+  const endIdx = Math.min(startIdx + pageSize, total);
+  const slice = filtered.slice(startIdx, endIdx);
+
+  tbody.innerHTML = slice.map(item => {
+    const style = getClassStyle(item.predicted_class);
+    const confVal = item.confidence != null ? item.confidence : 0;
+    const confPct = (confVal * 100).toFixed(2);
+    const notScored = item.not_scored === 1;
+
+    return `
+      <tr>
+        <td><strong style="font-family: var(--font-mono); color: #fff;">#${item.row_id}</strong></td>
+        <td><span class="class-pill ${style.pill}">${escapeHtml(style.cleanName)}</span></td>
+        <td>
+          <div class="confidence-meter">
+            <span style="font-family: var(--font-mono); font-size: 0.82rem; font-weight: 600; width: 55px;">${confPct}%</span>
+            <div class="confidence-bar-bg">
+              <div class="confidence-bar-val" style="width: ${confPct}%; background: ${style.dot};"></div>
+            </div>
+          </div>
+        </td>
+        <td>
+          <span class="badge ${notScored ? 'badge-warning' : 'badge-success'}" style="font-size: 0.7rem; padding: 2px 6px;">
+            ${notScored ? 'Not Scored' : 'Scored'}
+          </span>
+        </td>
+        <td><code style="color: var(--text-dim); font-size: 0.78rem;">${escapeHtml(state.csv.activeRunId ? state.csv.activeRunId.slice(0, 8) : 'active')}</code></td>
+      </tr>
+    `;
+  }).join('');
+
+  document.querySelector('#pagination-info').textContent = `Showing ${startIdx + 1} - ${endIdx} of ${total.toLocaleString()} flows`;
+  document.querySelector('#pagination-page-label').textContent = `${currentPage} / ${maxPage}`;
+  document.querySelector('#btn-page-prev').disabled = currentPage <= 1;
+  document.querySelector('#btn-page-next').disabled = currentPage >= maxPage;
+}
+
+// Ingestion Runs History
+async function loadRuns() {
+  const tbody = document.querySelector('#runs-history-tbody');
+  try {
+    const data = await api('/runs?limit=25');
+    const runs = data.items || [];
+    if (!runs.length) {
+      tbody.innerHTML = '<tr><td colspan="7" class="empty-state">No upload runs recorded yet.</td></tr>';
+      return;
+    }
+    tbody.innerHTML = runs.map(run => {
+      const date = run.created_at ? new Date(run.created_at).toLocaleString() : '—';
+      const shortId = run.run_id ? run.run_id.slice(0, 8) : '—';
+      const isScored = run.scored_count > 0;
+      return `
+        <tr>
+          <td><code style="color: #93c5fd; font-family: var(--font-mono);">${escapeHtml(shortId)}</code></td>
+          <td>${escapeHtml(date)}</td>
+          <td><strong style="color: #fff;">${escapeHtml(run.filename)}</strong></td>
+          <td>${run.row_count.toLocaleString()}</td>
+          <td><span style="color: ${isScored ? '#34d399' : '#f59e0b'}; font-weight: 600;">${run.scored_count.toLocaleString()}</span></td>
+          <td><span class="badge ${isScored ? 'badge-success' : 'badge-warning'}" style="font-size: 0.7rem;">${isScored ? 'Scored' : 'Unscored'}</span></td>
+          <td>
+            <button class="btn btn-outline btn-sm" type="button" onclick="inspectHistoricRun('${escapeHtml(run.run_id)}', '${escapeHtml(run.filename)}')">
+              Inspect Flows
+            </button>
+          </td>
+        </tr>
+      `;
+    }).join('');
+  } catch (e) {
+    tbody.innerHTML = `<tr><td colspan="7" style="color: #f87171; text-align: center;">Error loading history: ${escapeHtml(e.message)}</td></tr>`;
+  }
+}
+
+async function inspectHistoricRun(runId, filename) {
+  try {
+    const data = await api(`/flows?run_id=${encodeURIComponent(runId)}&limit=500`);
+    if (!data.items || !data.items.length) {
+      alert('No flows recorded for this run.');
+      return;
+    }
+
+    state.csv.activeRunId = runId;
+    state.csv.activeFilename = filename;
+    state.csv.activeRunPredictions = data.items;
+
+    const counts = {};
+    for (const item of data.items) {
+      const cls = item.predicted_class || 'UNKNOWN';
+      counts[cls] = (counts[cls] || 0) + 1;
+    }
+    state.csv.activeRunCounts = counts;
+
+    switchTab('tab-csv');
+    renderDistribution(counts, data.items.length);
+    updateCsvClassFilterOptions(counts);
+    applyCsvTableFilters();
+    if (!new URLSearchParams(window.location.search).get('run_id')) {
+      document.querySelector('#section-results-table').scrollIntoView({ behavior: 'smooth' });
+    }
+  } catch (err) {
+    alert(`Could not load run: ${err.message}`);
+  }
+}
+
+async function loadSessions() {
+  const tbody = document.querySelector('#sessions-history-tbody');
+  try {
+    const data = await api('/capture/sessions?limit=20');
+    const sessions = data.sessions || [];
+    if (!sessions.length) {
+      tbody.innerHTML = '<tr><td colspan="7" class="empty-state">No live capture sessions recorded.</td></tr>';
+      return;
+    }
+    tbody.innerHTML = sessions.map(s => {
+      const date = s.started_at ? new Date(s.started_at).toLocaleString() : '—';
+      const shortId = s.session_id ? s.session_id.slice(0, 8) : '—';
+      const isRunning = s.status === 'RUNNING';
+      return `
+        <tr>
+          <td><code style="color: #93c5fd; font-family: var(--font-mono);">${escapeHtml(shortId)}</code></td>
+          <td>${escapeHtml(date)}</td>
+          <td><strong style="color: #fff;">${escapeHtml(s.interface || '127.0.0.1')}</strong></td>
+          <td>${(s.packet_count || 0).toLocaleString()}</td>
+          <td>${(s.flow_count || 0).toLocaleString()}</td>
+          <td><span style="color: ${s.alert_count > 0 ? '#f87171' : '#cbd5e1'}; font-weight: 600;">${(s.alert_count || 0).toLocaleString()}</span></td>
+          <td><span class="badge ${isRunning ? 'badge-danger' : 'badge-success'}" style="font-size: 0.7rem;">${escapeHtml(s.status || 'STOPPED')}</span></td>
+        </tr>
+      `;
+    }).join('');
+  } catch (e) {
+    tbody.innerHTML = `<tr><td colspan="7" style="color: #f87171; text-align: center;">Error loading sessions: ${escapeHtml(e.message)}</td></tr>`;
+  }
+}
+
+// Flow Details Modal
+function setupModal() {
+  const backdrop = document.querySelector('#flow-modal-backdrop');
+  document.querySelector('#btn-close-modal').addEventListener('click', () => backdrop.classList.remove('open'));
+  document.querySelector('#btn-modal-dismiss').addEventListener('click', () => backdrop.classList.remove('open'));
+  backdrop.addEventListener('click', (e) => {
+    if (e.target === backdrop) backdrop.classList.remove('open');
+  });
+}
+
+function showFlowDetails(jsonStr) {
+  try {
+    const flow = JSON.parse(decodeURIComponent(jsonStr));
+    const backdrop = document.querySelector('#flow-modal-backdrop');
+    document.querySelector('#modal-flow-id').textContent = `Flow ID: ${flow.flow_id || '—'}`;
+
+    const grid = document.querySelector('#modal-kv-grid');
+    const entries = [
+      { k: 'Source IP & Port', v: `${flow.src_ip || '—'}:${flow.src_port || '—'}` },
+      { k: 'Destination IP & Port', v: `${flow.dst_ip || '—'}:${flow.dst_port || '—'}` },
+      { k: 'Protocol', v: flow.protocol === 6 ? 'TCP (6)' : (flow.protocol === 17 ? 'UDP (17)' : String(flow.protocol || '—')) },
+      { k: 'Duration', v: flow.duration_us ? (flow.duration_us / 1000).toFixed(2) + ' ms' : '—' },
+      { k: 'Total Packets', v: flow.packets || flow.total_packets || '—' },
+      { k: 'Total Bytes', v: formatBytes(flow.bytes || flow.total_bytes || 0) },
+      { k: 'Predicted Class', v: flow.predicted_class || 'PENDING' },
+      { k: 'Model Confidence', v: flow.confidence != null ? (flow.confidence * 100).toFixed(2) + '%' : '—' },
+      { k: 'Capture Mode', v: 'Windows Npcap Loopback' },
+      { k: 'Validation Status', v: 'EXPERIMENTAL / NOT OPERATIONALLY VALIDATED' }
+    ];
+
+    grid.innerHTML = entries.map(e => `
+      <div class="flow-kv-item">
+        <div class="flow-kv-key">${escapeHtml(e.k)}</div>
+        <div class="flow-kv-val">${escapeHtml(e.v)}</div>
+      </div>
+    `).join('');
+
+    backdrop.classList.add('open');
+  } catch (err) {
+    console.error('Modal error:', err);
+  }
+}
+
+// Start
+init();
+</script>
+</body>
+</html>

@@ -1,0 +1,187 @@
+{
+  "stage": "Stage 2D - Negative Feature Value Cleaning",
+  "status": "PASS",
+  "source_directory": "C:\\Projects\\NIDS\\data\\processed\\feature_cleaned_v1",
+  "output_directory": "C:\\Projects\\NIDS\\data\\processed\\feature_cleaned_v2",
+  "rows_preserved": 2830743,
+  "files_processed": 8,
+  "rule": "Negative values in the listed features are marked missing.",
+  "rule_interpretation": "Conservative data-quality policy; not proof of a common underlying cause for all negative values.",
+  "features": [
+    "Flow Duration",
+    "Flow IAT Min",
+    "Flow IAT Mean",
+    "Flow IAT Max",
+    "Fwd IAT Min",
+    "Flow Bytes/s",
+    "Flow Packets/s",
+    "Fwd Header Length",
+    "Bwd Header Length",
+    "min_seg_size_forward"
+  ],
+  "converted_by_feature": {
+    "Flow Duration": 115,
+    "Flow IAT Min": 2891,
+    "Flow IAT Mean": 115,
+    "Flow IAT Max": 115,
+    "Fwd IAT Min": 17,
+    "Flow Bytes/s": 85,
+    "Flow Packets/s": 115,
+    "Fwd Header Length": 35,
+    "Bwd Header Length": 22,
+    "min_seg_size_forward": 35
+  },
+  "total_cells_converted": 3545,
+  "rows_deleted": 0,
+  "labels_or_provenance_modified": false,
+  "imputation_performed": false,
+  "model_training_performed": false,
+  "source_hashes_unchanged": true,
+  "files": [
+    {
+      "source_file": "Friday-WorkingHours-Afternoon-DDos.pcap_ISCX.featureclean.csv",
+      "output_file": "Friday-WorkingHours-Afternoon-DDos.pcap_ISCX.cleanv2.csv",
+      "rows": 225745,
+      "negative_values_marked_missing": {
+        "Flow Duration": 2,
+        "Flow IAT Min": 108,
+        "Flow IAT Mean": 2,
+        "Flow IAT Max": 2,
+        "Fwd IAT Min": 6,
+        "Flow Bytes/s": 2,
+        "Flow Packets/s": 2,
+        "Fwd Header Length": 0,
+        "Bwd Header Length": 0,
+        "min_seg_size_forward": 0
+      },
+      "output_sha256": "d8471f00b6ca2fea8803269658533f226db8a47b3dc6d512ca7d846661401516"
+    },
+    {
+      "source_file": "Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.featureclean.csv",
+      "output_file": "Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.cleanv2.csv",
+      "rows": 286467,
+      "negative_values_marked_missing": {
+        "Flow Duration": 36,
+        "Flow IAT Min": 176,
+        "Flow IAT Mean": 36,
+        "Flow IAT Max": 36,
+        "Fwd IAT Min": 0,
+        "Flow Bytes/s": 36,
+        "Flow Packets/s": 36,
+        "Fwd Header Length": 0,
+        "Bwd Header Length": 0,
+        "min_seg_size_forward": 0
+      },
+      "output_sha256": "0291b1cb227a3dfc76ce6f3f523d587abde8a4da7f17766e5178c369ce0a916f"
+    },
+    {
+      "source_file": "Friday-WorkingHours-Morning.pcap_ISCX.featureclean.csv",
+      "output_file": "Friday-WorkingHours-Morning.pcap_ISCX.cleanv2.csv",
+      "rows": 191033,
+      "negative_values_marked_missing": {
+        "Flow Duration": 9,
+        "Flow IAT Min": 225,
+        "Flow IAT Mean": 9,
+        "Flow IAT Max": 9,
+        "Fwd IAT Min": 0,
+        "Flow Bytes/s": 8,
+        "Flow Packets/s": 9,
+        "Fwd Header Length": 0,
+        "Bwd Header Length": 0,
+        "min_seg_size_forward": 0
+      },
+      "output_sha256": "0d40830dd89f48d13e32ecd7d0bd0ea3a529f5be5ffabf9f66a85fe26dd8ea9e"
+    },
+    {
+      "source_file": "Monday-WorkingHours.pcap_ISCX.featureclean.csv",
+      "output_file": "Monday-WorkingHours.pcap_ISCX.cleanv2.csv",
+      "rows": 529918,
+      "negative_values_marked_missing": {
+        "Flow Duration": 15,
+        "Flow IAT Min": 512,
+        "Flow IAT Mean": 15,
+        "Flow IAT Max": 15,
+        "Fwd IAT Min": 0,
+        "Flow Bytes/s": 9,
+        "Flow Packets/s": 15,
+        "Fwd Header Length": 23,
+        "Bwd Header Length": 17,
+        "min_seg_size_forward": 23
+      },
+      "output_sha256": "6c120dce83644c69a9b5083e8e2d2421a470628b929cf45abb3dcad2be3d8b10"
+    },
+    {
+      "source_file": "Thursday-WorkingHours-Afternoon-Infilteration.pcap_ISCX.featureclean.csv",
+      "output_file": "Thursday-WorkingHours-Afternoon-Infilteration.pcap_ISCX.cleanv2.csv",
+      "rows": 288602,
+      "negative_values_marked_missing": {
+        "Flow Duration": 4,
+        "Flow IAT Min": 353,
+        "Flow IAT Mean": 4,
+        "Flow IAT Max": 4,
+        "Fwd IAT Min": 0,
+        "Flow Bytes/s": 4,
+        "Flow Packets/s": 4,
+        "Fwd Header Length": 0,
+        "Bwd Header Length": 0,
+        "min_seg_size_forward": 0
+      },
+      "output_sha256": "17ddd62cdcf6758b12ecf22403805a625cb96fc9d79ff01593368fceef31154f"
+    },
+    {
+      "source_file": "Thursday-WorkingHours-Morning-WebAttacks.pcap_ISCX.featureclean.csv",
+      "output_file": "Thursday-WorkingHours-Morning-WebAttacks.pcap_ISCX.cleanv2.csv",
+      "rows": 170366,
+      "negative_values_marked_missing": {
+        "Flow Duration": 11,
+        "Flow IAT Min": 263,
+        "Flow IAT Mean": 11,
+        "Flow IAT Max": 11,
+        "Fwd IAT Min": 0,
+        "Flow Bytes/s": 10,
+        "Flow Packets/s": 11,
+        "Fwd Header Length": 0,
+        "Bwd Header Length": 0,
+        "min_seg_size_forward": 0
+      },
+      "output_sha256": "eff24708957ac904f76ed194ca179506b1ad509c16b5cf65351442088d6243f8"
+    },
+    {
+      "source_file": "Tuesday-WorkingHours.pcap_ISCX.featureclean.csv",
+      "output_file": "Tuesday-WorkingHours.pcap_ISCX.cleanv2.csv",
+      "rows": 445909,
+      "negative_values_marked_missing": {
+        "Flow Duration": 17,
+        "Flow IAT Min": 505,
+        "Flow IAT Mean": 17,
+        "Flow IAT Max": 17,
+        "Fwd IAT Min": 0,
+        "Flow Bytes/s": 0,
+        "Flow Packets/s": 17,
+        "Fwd Header Length": 11,
+        "Bwd Header Length": 5,
+        "min_seg_size_forward": 11
+      },
+      "output_sha256": "1b27c299b65fac4b23e502646b433e847ff7cb8fed33f9223cd8b3e76fd6301b"
+    },
+    {
+      "source_file": "Wednesday-workingHours.pcap_ISCX.featureclean.csv",
+      "output_file": "Wednesday-workingHours.pcap_ISCX.cleanv2.csv",
+      "rows": 692703,
+      "negative_values_marked_missing": {
+        "Flow Duration": 21,
+        "Flow IAT Min": 749,
+        "Flow IAT Mean": 21,
+        "Flow IAT Max": 21,
+        "Fwd IAT Min": 11,
+        "Flow Bytes/s": 16,
+        "Flow Packets/s": 21,
+        "Fwd Header Length": 1,
+        "Bwd Header Length": 0,
+        "min_seg_size_forward": 1
+      },
+      "output_sha256": "48432740ded44e33f45bedfb3f0edfa50d997cdf646c494fb7698843730cf691"
+    }
+  ],
+  "errors": []
+}

@@ -1,0 +1,16 @@
+raw_label,model_label,quality_status,row_count
+BENIGN,BENIGN,UNCHANGED,2273097
+Bot,Bot,UNCHANGED,1966
+DDoS,DDoS,UNCHANGED,128027
+DoS GoldenEye,DoS GoldenEye,UNCHANGED,10293
+DoS Hulk,DoS Hulk,UNCHANGED,231073
+DoS Slowhttptest,DoS Slowhttptest,UNCHANGED,5499
+DoS slowloris,DoS slowloris,UNCHANGED,5796
+FTP-Patator,FTP-Patator,UNCHANGED,7938
+Heartbleed,Heartbleed,UNCHANGED,11
+Infiltration,Infiltration,UNCHANGED,36
+PortScan,PortScan,UNCHANGED,158930
+SSH-Patator,SSH-Patator,UNCHANGED,5897
+Web Attack � Brute Force,Web Attack � Brute Force,REVIEW_REQUIRED_ENCODING_DAMAGE,1507
+Web Attack � Sql Injection,Web Attack � Sql Injection,REVIEW_REQUIRED_ENCODING_DAMAGE,21
+Web Attack � XSS,Web Attack � XSS,REVIEW_REQUIRED_ENCODING_DAMAGE,652

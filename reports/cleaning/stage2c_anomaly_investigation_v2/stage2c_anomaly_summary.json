@@ -1,0 +1,556 @@
+{
+  "stage": "Stage 2C - Remaining Feature Anomaly Investigation",
+  "mode": "READ_ONLY",
+  "status": "PASS",
+  "rows_scanned": 2830743,
+  "files_scanned": 8,
+  "features_investigated": [
+    "Flow Duration",
+    "Flow IAT Min",
+    "Flow IAT Mean",
+    "Flow IAT Max",
+    "Fwd IAT Min",
+    "Flow Bytes/s",
+    "Flow Packets/s",
+    "Fwd Header Length",
+    "Bwd Header Length",
+    "min_seg_size_forward"
+  ],
+  "feature_findings": {
+    "Flow Duration": {
+      "negative_cells": 115,
+      "affected_rows": 115,
+      "exact_minus_one_cells": 109,
+      "less_than_minus_one_cells": 6,
+      "minimum_negative_value": -13.0,
+      "top_negative_values": [
+        [
+          "-1",
+          109
+        ],
+        [
+          "-12",
+          2
+        ],
+        [
+          "-2",
+          2
+        ],
+        [
+          "-13",
+          1
+        ],
+        [
+          "-4",
+          1
+        ]
+      ],
+      "counts_by_label": {
+        "BENIGN": 115
+      },
+      "counts_by_file": {
+        "Friday-WorkingHours-Afternoon-DDos.pcap_ISCX.csv": 2,
+        "Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv": 36,
+        "Friday-WorkingHours-Morning.pcap_ISCX.csv": 9,
+        "Monday-WorkingHours.pcap_ISCX.csv": 15,
+        "Thursday-WorkingHours-Afternoon-Infilteration.pcap_ISCX.csv": 4,
+        "Thursday-WorkingHours-Morning-WebAttacks.pcap_ISCX.csv": 11,
+        "Tuesday-WorkingHours.pcap_ISCX.csv": 17,
+        "Wednesday-workingHours.pcap_ISCX.csv": 21
+      },
+      "raw_cleaned_matches": 2830743,
+      "raw_cleaned_mismatches": 0
+    },
+    "Flow IAT Min": {
+      "negative_cells": 2891,
+      "affected_rows": 2891,
+      "exact_minus_one_cells": 2754,
+      "less_than_minus_one_cells": 137,
+      "minimum_negative_value": -14.0,
+      "top_negative_values": [
+        [
+          "-1",
+          2754
+        ],
+        [
+          "-12",
+          32
+        ],
+        [
+          "-2",
+          27
+        ],
+        [
+          "-3",
+          17
+        ],
+        [
+          "-4",
+          17
+        ],
+        [
+          "-11",
+          12
+        ],
+        [
+          "-13",
+          12
+        ],
+        [
+          "-5",
+          11
+        ],
+        [
+          "-10",
+          4
+        ],
+        [
+          "-6",
+          2
+        ]
+      ],
+      "counts_by_label": {
+        "BENIGN": 2697,
+        "DDoS": 19,
+        "Infiltration": 1,
+        "FTP-Patator": 4,
+        "SSH-Patator": 2,
+        "DoS Hulk": 159,
+        "DoS GoldenEye": 5,
+        "Heartbleed": 4
+      },
+      "counts_by_file": {
+        "Friday-WorkingHours-Afternoon-DDos.pcap_ISCX.csv": 108,
+        "Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv": 176,
+        "Friday-WorkingHours-Morning.pcap_ISCX.csv": 225,
+        "Monday-WorkingHours.pcap_ISCX.csv": 512,
+        "Thursday-WorkingHours-Afternoon-Infilteration.pcap_ISCX.csv": 353,
+        "Thursday-WorkingHours-Morning-WebAttacks.pcap_ISCX.csv": 263,
+        "Tuesday-WorkingHours.pcap_ISCX.csv": 505,
+        "Wednesday-workingHours.pcap_ISCX.csv": 749
+      },
+      "raw_cleaned_matches": 2830743,
+      "raw_cleaned_mismatches": 0
+    },
+    "Flow IAT Mean": {
+      "negative_cells": 115,
+      "affected_rows": 115,
+      "exact_minus_one_cells": 109,
+      "less_than_minus_one_cells": 6,
+      "minimum_negative_value": -13.0,
+      "top_negative_values": [
+        [
+          "-1",
+          109
+        ],
+        [
+          "-12",
+          2
+        ],
+        [
+          "-2",
+          2
+        ],
+        [
+          "-13",
+          1
+        ],
+        [
+          "-4",
+          1
+        ]
+      ],
+      "counts_by_label": {
+        "BENIGN": 115
+      },
+      "counts_by_file": {
+        "Friday-WorkingHours-Afternoon-DDos.pcap_ISCX.csv": 2,
+        "Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv": 36,
+        "Friday-WorkingHours-Morning.pcap_ISCX.csv": 9,
+        "Monday-WorkingHours.pcap_ISCX.csv": 15,
+        "Thursday-WorkingHours-Afternoon-Infilteration.pcap_ISCX.csv": 4,
+        "Thursday-WorkingHours-Morning-WebAttacks.pcap_ISCX.csv": 11,
+        "Tuesday-WorkingHours.pcap_ISCX.csv": 17,
+        "Wednesday-workingHours.pcap_ISCX.csv": 21
+      },
+      "raw_cleaned_matches": 2830743,
+      "raw_cleaned_mismatches": 0
+    },
+    "Flow IAT Max": {
+      "negative_cells": 115,
+      "affected_rows": 115,
+      "exact_minus_one_cells": 109,
+      "less_than_minus_one_cells": 6,
+      "minimum_negative_value": -13.0,
+      "top_negative_values": [
+        [
+          "-1",
+          109
+        ],
+        [
+          "-12",
+          2
+        ],
+        [
+          "-2",
+          2
+        ],
+        [
+          "-13",
+          1
+        ],
+        [
+          "-4",
+          1
+        ]
+      ],
+      "counts_by_label": {
+        "BENIGN": 115
+      },
+      "counts_by_file": {
+        "Friday-WorkingHours-Afternoon-DDos.pcap_ISCX.csv": 2,
+        "Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv": 36,
+        "Friday-WorkingHours-Morning.pcap_ISCX.csv": 9,
+        "Monday-WorkingHours.pcap_ISCX.csv": 15,
+        "Thursday-WorkingHours-Afternoon-Infilteration.pcap_ISCX.csv": 4,
+        "Thursday-WorkingHours-Morning-WebAttacks.pcap_ISCX.csv": 11,
+        "Tuesday-WorkingHours.pcap_ISCX.csv": 17,
+        "Wednesday-workingHours.pcap_ISCX.csv": 21
+      },
+      "raw_cleaned_matches": 2830743,
+      "raw_cleaned_mismatches": 0
+    },
+    "Fwd IAT Min": {
+      "negative_cells": 17,
+      "affected_rows": 17,
+      "exact_minus_one_cells": 15,
+      "less_than_minus_one_cells": 2,
+      "minimum_negative_value": -12.0,
+      "top_negative_values": [
+        [
+          "-1",
+          15
+        ],
+        [
+          "-12",
+          1
+        ],
+        [
+          "-8",
+          1
+        ]
+      ],
+      "counts_by_label": {
+        "DDoS": 6,
+        "DoS Hulk": 8,
+        "DoS GoldenEye": 3
+      },
+      "counts_by_file": {
+        "Friday-WorkingHours-Afternoon-DDos.pcap_ISCX.csv": 6,
+        "Wednesday-workingHours.pcap_ISCX.csv": 11
+      },
+      "raw_cleaned_matches": 2830743,
+      "raw_cleaned_mismatches": 0
+    },
+    "Flow Bytes/s": {
+      "negative_cells": 85,
+      "affected_rows": 85,
+      "exact_minus_one_cells": 0,
+      "less_than_minus_one_cells": 85,
+      "minimum_negative_value": -261000000.0,
+      "top_negative_values": [
+        [
+          "-12000000",
+          50
+        ],
+        [
+          "-6000000",
+          16
+        ],
+        [
+          "-8000000",
+          13
+        ],
+        [
+          "-193000000",
+          1
+        ],
+        [
+          "-666666.6667",
+          1
+        ],
+        [
+          "-461538.4615",
+          1
+        ],
+        [
+          "-4000000",
+          1
+        ],
+        [
+          "-1000000",
+          1
+        ],
+        [
+          "-261000000",
+          1
+        ]
+      ],
+      "counts_by_label": {
+        "BENIGN": 85
+      },
+      "counts_by_file": {
+        "Friday-WorkingHours-Afternoon-DDos.pcap_ISCX.csv": 2,
+        "Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv": 36,
+        "Friday-WorkingHours-Morning.pcap_ISCX.csv": 8,
+        "Monday-WorkingHours.pcap_ISCX.csv": 9,
+        "Thursday-WorkingHours-Afternoon-Infilteration.pcap_ISCX.csv": 4,
+        "Thursday-WorkingHours-Morning-WebAttacks.pcap_ISCX.csv": 10,
+        "Wednesday-workingHours.pcap_ISCX.csv": 16
+      },
+      "raw_cleaned_matches": 2827876,
+      "raw_cleaned_mismatches": 2867
+    },
+    "Flow Packets/s": {
+      "negative_cells": 115,
+      "affected_rows": 115,
+      "exact_minus_one_cells": 0,
+      "less_than_minus_one_cells": 115,
+      "minimum_negative_value": -2000000.0,
+      "top_negative_values": [
+        [
+          "-2000000",
+          109
+        ],
+        [
+          "-166666.6667",
+          2
+        ],
+        [
+          "-1000000",
+          2
+        ],
+        [
+          "-153846.1538",
+          1
+        ],
+        [
+          "-500000",
+          1
+        ]
+      ],
+      "counts_by_label": {
+        "BENIGN": 115
+      },
+      "counts_by_file": {
+        "Friday-WorkingHours-Afternoon-DDos.pcap_ISCX.csv": 2,
+        "Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv": 36,
+        "Friday-WorkingHours-Morning.pcap_ISCX.csv": 9,
+        "Monday-WorkingHours.pcap_ISCX.csv": 15,
+        "Thursday-WorkingHours-Afternoon-Infilteration.pcap_ISCX.csv": 4,
+        "Thursday-WorkingHours-Morning-WebAttacks.pcap_ISCX.csv": 11,
+        "Tuesday-WorkingHours.pcap_ISCX.csv": 17,
+        "Wednesday-workingHours.pcap_ISCX.csv": 21
+      },
+      "raw_cleaned_matches": 2827876,
+      "raw_cleaned_mismatches": 2867
+    },
+    "Fwd Header Length": {
+      "negative_cells": 35,
+      "affected_rows": 35,
+      "exact_minus_one_cells": 0,
+      "less_than_minus_one_cells": 35,
+      "minimum_negative_value": -32212234632.0,
+      "top_negative_values": [
+        [
+          "-83885125",
+          3
+        ],
+        [
+          "-167770490",
+          3
+        ],
+        [
+          "-1073741320",
+          3
+        ],
+        [
+          "-167770494",
+          2
+        ],
+        [
+          "-6442447920",
+          2
+        ],
+        [
+          "-1929349973",
+          1
+        ],
+        [
+          "-83885093",
+          1
+        ],
+        [
+          "-1006620072",
+          1
+        ],
+        [
+          "-167770470",
+          1
+        ],
+        [
+          "-83885113",
+          1
+        ]
+      ],
+      "counts_by_label": {
+        "BENIGN": 35
+      },
+      "counts_by_file": {
+        "Monday-WorkingHours.pcap_ISCX.csv": 23,
+        "Tuesday-WorkingHours.pcap_ISCX.csv": 11,
+        "Wednesday-workingHours.pcap_ISCX.csv": 1
+      },
+      "raw_cleaned_matches": 2830743,
+      "raw_cleaned_mismatches": 0
+    },
+    "Bwd Header Length": {
+      "negative_cells": 22,
+      "affected_rows": 22,
+      "exact_minus_one_cells": 0,
+      "less_than_minus_one_cells": 22,
+      "minimum_negative_value": -1073741320.0,
+      "top_negative_values": [
+        [
+          "-1073741320",
+          3
+        ],
+        [
+          "-83885125",
+          2
+        ],
+        [
+          "-167770490",
+          2
+        ],
+        [
+          "-83885181",
+          2
+        ],
+        [
+          "-83885093",
+          1
+        ],
+        [
+          "-167770470",
+          1
+        ],
+        [
+          "-83885113",
+          1
+        ],
+        [
+          "-83885081",
+          1
+        ],
+        [
+          "-83885145",
+          1
+        ],
+        [
+          "-83885137",
+          1
+        ]
+      ],
+      "counts_by_label": {
+        "BENIGN": 22
+      },
+      "counts_by_file": {
+        "Monday-WorkingHours.pcap_ISCX.csv": 17,
+        "Tuesday-WorkingHours.pcap_ISCX.csv": 5
+      },
+      "raw_cleaned_matches": 2830743,
+      "raw_cleaned_mismatches": 0
+    },
+    "min_seg_size_forward": {
+      "negative_cells": 35,
+      "affected_rows": 35,
+      "exact_minus_one_cells": 1,
+      "less_than_minus_one_cells": 34,
+      "minimum_negative_value": -536870661.0,
+      "top_negative_values": [
+        [
+          "-83885313",
+          23
+        ],
+        [
+          "-536870660",
+          9
+        ],
+        [
+          "-536870661",
+          2
+        ],
+        [
+          "-1",
+          1
+        ]
+      ],
+      "counts_by_label": {
+        "BENIGN": 35
+      },
+      "counts_by_file": {
+        "Monday-WorkingHours.pcap_ISCX.csv": 23,
+        "Tuesday-WorkingHours.pcap_ISCX.csv": 11,
+        "Wednesday-workingHours.pcap_ISCX.csv": 1
+      },
+      "raw_cleaned_matches": 2830743,
+      "raw_cleaned_mismatches": 0
+    }
+  },
+  "files": [
+    {
+      "raw_file": "Friday-WorkingHours-Afternoon-DDos.pcap_ISCX.csv",
+      "cleaned_file": "Friday-WorkingHours-Afternoon-DDos.pcap_ISCX.featureclean.csv",
+      "rows_scanned": 225745
+    },
+    {
+      "raw_file": "Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv",
+      "cleaned_file": "Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.featureclean.csv",
+      "rows_scanned": 286467
+    },
+    {
+      "raw_file": "Friday-WorkingHours-Morning.pcap_ISCX.csv",
+      "cleaned_file": "Friday-WorkingHours-Morning.pcap_ISCX.featureclean.csv",
+      "rows_scanned": 191033
+    },
+    {
+      "raw_file": "Monday-WorkingHours.pcap_ISCX.csv",
+      "cleaned_file": "Monday-WorkingHours.pcap_ISCX.featureclean.csv",
+      "rows_scanned": 529918
+    },
+    {
+      "raw_file": "Thursday-WorkingHours-Afternoon-Infilteration.pcap_ISCX.csv",
+      "cleaned_file": "Thursday-WorkingHours-Afternoon-Infilteration.pcap_ISCX.featureclean.csv",
+      "rows_scanned": 288602
+    },
+    {
+      "raw_file": "Thursday-WorkingHours-Morning-WebAttacks.pcap_ISCX.csv",
+      "cleaned_file": "Thursday-WorkingHours-Morning-WebAttacks.pcap_ISCX.featureclean.csv",
+      "rows_scanned": 170366
+    },
+    {
+      "raw_file": "Tuesday-WorkingHours.pcap_ISCX.csv",
+      "cleaned_file": "Tuesday-WorkingHours.pcap_ISCX.featureclean.csv",
+      "rows_scanned": 445909
+    },
+    {
+      "raw_file": "Wednesday-workingHours.pcap_ISCX.csv",
+      "cleaned_file": "Wednesday-workingHours.pcap_ISCX.featureclean.csv",
+      "rows_scanned": 692703
+    }
+  ],
+  "error_count": 0,
+  "errors": [],
+  "note": "PASS means these checks completed without detected errors; it does not certify every negative value as valid or invalid."
+}

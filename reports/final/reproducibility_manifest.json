@@ -1,0 +1,204 @@
+{
+  "manifest_type": "NIDS_REPRODUCIBILITY_MANIFEST",
+  "generated_at_utc": "2026-10-12T12:20:33.341229+00:00",
+  "project": "Network Traffic Classification and Automated Intrusion Detection System (NIDS)",
+  "repository_root": "C:\\Projects\\NIDS",
+  "artifact_hashes": {
+    "model_v2_json": {
+      "relative_path": "models/replacement_v2/xgboost_nids_replacement_v2.json",
+      "sha256": "76574302191A871B1E71F18860714B3B29CD4F09E178EE294ABE2F9BDB68F4B2",
+      "size_bytes": 3481573
+    },
+    "model_v2_features": {
+      "relative_path": "models/replacement_v2/selected_features.txt",
+      "sha256": "7A2CA037B3341EBF64E8252A8F1BCDBB2A1A9F14C66FE0ED2DA47AF3FDE4C6F2",
+      "size_bytes": 1085
+    },
+    "model_v2_labels": {
+      "relative_path": "models/replacement_v2/label_mapping.json",
+      "sha256": "8A1EDFEA81ED7E10A394EA51E30962E93F7391DEA03699C928AB497E05CEED5A",
+      "size_bytes": 375
+    },
+    "model_v2_metadata": {
+      "relative_path": "models/replacement_v2/model_metadata.json",
+      "sha256": "89238CF2F1C04B15DADED9F452D0C5A35B4A60926434FE853D6905052880DA36",
+      "size_bytes": 1771
+    },
+    "split_manifest_csv": {
+      "relative_path": "reports/evaluation/stage4c2/stage4c2_split_manifest.csv",
+      "sha256": "6D0C03912695C2C96319505D068D4C0B349B58E7F6AFCBDB04E26739A6E63140",
+      "size_bytes": 178992193
+    },
+    "split_summary_json": {
+      "relative_path": "reports/evaluation/stage4c2/stage4c2_split_summary.json",
+      "sha256": "10C136492CA5909FD846D129CCC7F2DA1E61FE286AF62771025E8E5D6DDF44A1",
+      "size_bytes": 2257
+    },
+    "confusion_matrix_csv": {
+      "relative_path": "reports/evaluation/stage4c2/confusion_matrix.csv",
+      "sha256": "85F748C7DFF281E7DA68A48D7BBA27D6E18DD6510242AF89B4CC46C8B4315C05",
+      "size_bytes": 1099
+    },
+    "confusion_matrix_text": {
+      "relative_path": "reports/evaluation/stage4c2/confusion_matrix_text.txt",
+      "sha256": "52D5411A37B1C37EA3537D3B75E001325ED66F07B2892BDD9E0DDF4F77D93DB3",
+      "size_bytes": 10471
+    },
+    "stage4c2_metrics_json": {
+      "relative_path": "reports/evaluation/stage4c2/stage4c2_metrics.json",
+      "sha256": "003C2EFA950DBB679633257F44E12CA619FDEE30CE4305F439C19EBD05EC23B7",
+      "size_bytes": 8582
+    },
+    "train_script": {
+      "relative_path": "src/models/train_replacement_v2.py",
+      "sha256": "E93424CCB8FE3D6B1AEACD90062568151FF1EDA84B42BE7FB6111E43A3E247A0",
+      "size_bytes": 7857
+    },
+    "eval_script": {
+      "relative_path": "src/evaluation/run_stage4c2_evaluation.py",
+      "sha256": "CE495B92D80ACF148ED50E61F9D4FAB08C957B4ABC62746C5512A5EBF1746788",
+      "size_bytes": 7165
+    },
+    "split_verify_script": {
+      "relative_path": "src/evaluation/verify_dataset_split.py",
+      "sha256": "0546FEE19D47403091BB688B9D571C76BAE7F2A0F94CEB71CB649CEF96131389",
+      "size_bytes": 7581
+    },
+    "offline_evaluator": {
+      "relative_path": "src/evaluation/offline_evaluator.py",
+      "sha256": "0471AB99DE0D584000EDF867D949E211BAE9A48CBFF930F519550C976B8B6C2C",
+      "size_bytes": 13286
+    },
+    "offline_pipeline": {
+      "relative_path": "src/evaluation/offline_pipeline.py",
+      "sha256": "C3B677E0622C6085F9C41DB0C411772B6856E5A1A505537E7181AE3F522F13E4",
+      "size_bytes": 8105
+    },
+    "app_backend": {
+      "relative_path": "app_v2/app_model_v2.py",
+      "sha256": "FD2EE7B209AA5EF46B774A84D003A94895A8541281ACD7F26BADCE319D3F138C",
+      "size_bytes": 33570
+    },
+    "live_capture_worker": {
+      "relative_path": "app_v2/capture/live_capture_worker.py",
+      "sha256": "01D0B825DD008CDF47E2D60F08C2BA51D1C77FBF6C3560CE49095534712E85A0",
+      "size_bytes": 15967
+    },
+    "flow_tracker": {
+      "relative_path": "app_v2/capture/flow_tracker.py",
+      "sha256": "86B3F6897851C75C2079D9641FA25A392E3DB4AC48DE7928E39BA29E8A82D39A",
+      "size_bytes": 11694
+    },
+    "feature_extractor": {
+      "relative_path": "app_v2/capture/feature_extractor.py",
+      "sha256": "031320ED28614FC1D8972BB38332013107B03818F8B6E6C5DB9F8B358A2BB6E4",
+      "size_bytes": 12363
+    },
+    "packet_dissector": {
+      "relative_path": "app_v2/capture/packet_dissector.py",
+      "sha256": "D919F4E4F696EE5A332351C0B4733E47AE9EDBD3987F0214E5E62248D29FD19F",
+      "size_bytes": 8247
+    },
+    "dashboard_html": {
+      "relative_path": "app_v2/static/index_v2.html",
+      "sha256": "ABE1A98A9789E84A403CABEDACAF97839B8E687B385F74EF96E60104C3C10AFE",
+      "size_bytes": 92460
+    },
+    "readme": {
+      "relative_path": "README.md",
+      "sha256": "D06C5F9EBA0955569EEE8F6B8C1F20C022CE027DAE3F616EAC9A626AAD3E1403",
+      "size_bytes": 21120
+    }
+  },
+  "model_reproducibility": {
+    "model_version": "replacement_v2",
+    "model_architecture": "XGBoost XGBClassifier (Histogram Booster)",
+    "hyperparameters": {
+      "objective": "multi:softprob",
+      "num_class": 15,
+      "n_estimators": 100,
+      "max_depth": 6,
+      "learning_rate": 0.1,
+      "subsample": 0.8,
+      "colsample_bytree": 0.8,
+      "tree_method": "hist",
+      "device": "cuda",
+      "max_bin": 64,
+      "n_jobs": 4,
+      "verbosity": 1,
+      "random_state": 42
+    },
+    "random_seeds": {
+      "training_seed": 42,
+      "split_deterministic_clustering": "SHA-256 hash sorting (no pseudo-random shuffling across cluster boundaries)"
+    },
+    "contract": {
+      "features_count": 63,
+      "classes_count": 15,
+      "zero_support_classes": [
+        "Heartbleed",
+        "Infiltration",
+        "Web Attack  Sql Injection"
+      ]
+    }
+  },
+  "runtime_environment": {
+    "os_name": "Windows",
+    "os_release": "11",
+    "os_version": "10.0.26200",
+    "platform_string": "Windows-11-10.0.26200-SP0",
+    "architecture": "AMD64",
+    "python_executable": "C:\\Projects\\NIDS\\app_v2\\.venv\\Scripts\\python.exe",
+    "python_version": "3.12.14",
+    "python_build": [
+      "main",
+      "Sep 24 2026 17:57:31"
+    ],
+    "installed_libraries": {
+      "xgboost": "3.4.1",
+      "numpy": "2.5.4",
+      "pandas": "2.2.3",
+      "scikit-learn": "1.9.1",
+      "fastapi": "0.115.12",
+      "uvicorn": "0.34.0",
+      "scapy": "2.8.0"
+    },
+    "gpu_hardware": {
+      "device": "NVIDIA GeForce RTX 3060 Laptop GPU",
+      "vram_total_mb": 6144,
+      "cuda_driver": "12.8"
+    }
+  },
+  "exact_reproduction_commands": [
+    {
+      "step": 1,
+      "description": "Verify source dataset checksums and exact-duplicate-free split (0 cross-partition collisions)",
+      "working_directory": "C:\\Projects\\NIDS",
+      "command": ".\\.venv\\Scripts\\python.exe src/evaluation/verify_dataset_split.py"
+    },
+    {
+      "step": 2,
+      "description": "Train replacement_v2 model strictly on the 2,264,633 training partition rows",
+      "working_directory": "C:\\Projects\\NIDS",
+      "command": ".\\.venv\\Scripts\\python.exe src/models/train_replacement_v2.py"
+    },
+    {
+      "step": 3,
+      "description": "Evaluate replacement_v2 model on the locked 566,110 held-out test rows",
+      "working_directory": "C:\\Projects\\NIDS",
+      "command": ".\\.venv\\Scripts\\python.exe src/evaluation/run_stage4c2_evaluation.py"
+    },
+    {
+      "step": 4,
+      "description": "Export and verify full 15x15 readable text confusion matrix (sum=566,110, diagonal=565,497)",
+      "working_directory": "C:\\Projects\\NIDS",
+      "command": ".\\.venv\\Scripts\\python.exe scratch/export_confusion_matrix_text.py"
+    },
+    {
+      "step": 5,
+      "description": "Execute complete automated regression test suite (50 tests across 4 test modules)",
+      "working_directory": "C:\\Projects\\NIDS",
+      "command": "app_v2\\.venv\\Scripts\\python.exe -m unittest tests/test_stage4c2.py tests/test_api_v2.py tests/test_stage4b.py tests/test_offline_evaluator.py tests/test_offline_pipeline.py"
+    }
+  ]
+}

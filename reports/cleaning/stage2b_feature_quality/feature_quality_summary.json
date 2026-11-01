@@ -1,0 +1,216 @@
+{
+  "stage": "Stage 2B - Feature Quality Scan",
+  "mode": "READ_ONLY",
+  "files": [
+    {
+      "file": "Friday-WorkingHours-Afternoon-DDos.pcap_ISCX.labelprep.csv",
+      "rows": 225745,
+      "blank_feature_cells": 68,
+      "non_numeric_feature_cells": 0,
+      "nonfinite_feature_cells": 0,
+      "negative_feature_cells": 121348
+    },
+    {
+      "file": "Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.labelprep.csv",
+      "rows": 286467,
+      "blank_feature_cells": 742,
+      "non_numeric_feature_cells": 0,
+      "nonfinite_feature_cells": 0,
+      "negative_feature_cells": 137508
+    },
+    {
+      "file": "Friday-WorkingHours-Morning.pcap_ISCX.labelprep.csv",
+      "rows": 191033,
+      "blank_feature_cells": 244,
+      "non_numeric_feature_cells": 0,
+      "nonfinite_feature_cells": 0,
+      "negative_feature_cells": 214522
+    },
+    {
+      "file": "Monday-WorkingHours.pcap_ISCX.labelprep.csv",
+      "rows": 529918,
+      "blank_feature_cells": 874,
+      "non_numeric_feature_cells": 0,
+      "nonfinite_feature_cells": 0,
+      "negative_feature_cells": 524233
+    },
+    {
+      "file": "Thursday-WorkingHours-Afternoon-Infilteration.pcap_ISCX.labelprep.csv",
+      "rows": 288602,
+      "blank_feature_cells": 414,
+      "non_numeric_feature_cells": 0,
+      "nonfinite_feature_cells": 0,
+      "negative_feature_cells": 267157
+    },
+    {
+      "file": "Thursday-WorkingHours-Morning-WebAttacks.pcap_ISCX.labelprep.csv",
+      "rows": 170366,
+      "blank_feature_cells": 270,
+      "non_numeric_feature_cells": 0,
+      "nonfinite_feature_cells": 0,
+      "negative_feature_cells": 184601
+    },
+    {
+      "file": "Tuesday-WorkingHours.pcap_ISCX.labelprep.csv",
+      "rows": 445909,
+      "blank_feature_cells": 528,
+      "non_numeric_feature_cells": 0,
+      "nonfinite_feature_cells": 0,
+      "negative_feature_cells": 457327
+    },
+    {
+      "file": "Wednesday-workingHours.pcap_ISCX.labelprep.csv",
+      "rows": 692703,
+      "blank_feature_cells": 2594,
+      "non_numeric_feature_cells": 0,
+      "nonfinite_feature_cells": 0,
+      "negative_feature_cells": 539590
+    }
+  ],
+  "total_rows": 2830743,
+  "feature_count": 63,
+  "missing_cells_by_feature": {
+    "Flow Bytes/s": 2867,
+    "Flow Packets/s": 2867
+  },
+  "non_numeric_by_feature": {},
+  "nonfinite_by_feature": {},
+  "negative_values_by_feature": {
+    "Init_Win_bytes_backward": 1441552,
+    "Init_Win_bytes_forward": 1001189,
+    "Flow IAT Min": 2891,
+    "Fwd IAT Min": 17,
+    "Flow Duration": 115,
+    "Flow Bytes/s": 85,
+    "Flow Packets/s": 115,
+    "Flow IAT Mean": 115,
+    "Flow IAT Max": 115,
+    "Fwd Header Length": 35,
+    "min_seg_size_forward": 35,
+    "Bwd Header Length": 22
+  },
+  "negative_examples": {
+    "Init_Win_bytes_backward": {
+      "count_seen": 1441552,
+      "examples": [
+        "-1",
+        "-1",
+        "-1",
+        "-1",
+        "-1"
+      ]
+    },
+    "Init_Win_bytes_forward": {
+      "count_seen": 1001189,
+      "examples": [
+        "-1",
+        "-1",
+        "-1",
+        "-1",
+        "-1"
+      ]
+    },
+    "Flow IAT Min": {
+      "count_seen": 2891,
+      "examples": [
+        "-1",
+        "-1",
+        "-1",
+        "-1",
+        "-1"
+      ]
+    },
+    "Fwd IAT Min": {
+      "count_seen": 17,
+      "examples": [
+        "-12",
+        "-1",
+        "-1",
+        "-1",
+        "-1"
+      ]
+    },
+    "Flow Duration": {
+      "count_seen": 115,
+      "examples": [
+        "-1",
+        "-1",
+        "-1",
+        "-1",
+        "-1"
+      ]
+    },
+    "Flow Bytes/s": {
+      "count_seen": 85,
+      "examples": [
+        "-12000000",
+        "-12000000",
+        "-12000000",
+        "-193000000",
+        "-12000000"
+      ]
+    },
+    "Flow Packets/s": {
+      "count_seen": 115,
+      "examples": [
+        "-2000000",
+        "-2000000",
+        "-2000000",
+        "-2000000",
+        "-2000000"
+      ]
+    },
+    "Flow IAT Mean": {
+      "count_seen": 115,
+      "examples": [
+        "-1",
+        "-1",
+        "-1",
+        "-1",
+        "-1"
+      ]
+    },
+    "Flow IAT Max": {
+      "count_seen": 115,
+      "examples": [
+        "-1",
+        "-1",
+        "-1",
+        "-1",
+        "-1"
+      ]
+    },
+    "Fwd Header Length": {
+      "count_seen": 35,
+      "examples": [
+        "-1929349973",
+        "-83885093",
+        "-1006620072",
+        "-167770470",
+        "-83885125"
+      ]
+    },
+    "min_seg_size_forward": {
+      "count_seen": 35,
+      "examples": [
+        "-83885313",
+        "-83885313",
+        "-83885313",
+        "-83885313",
+        "-83885313"
+      ]
+    },
+    "Bwd Header Length": {
+      "count_seen": 22,
+      "examples": [
+        "-83885093",
+        "-167770470",
+        "-83885125",
+        "-83885113",
+        "-83885081"
+      ]
+    }
+  },
+  "errors": [],
+  "status": "PASS"
+}

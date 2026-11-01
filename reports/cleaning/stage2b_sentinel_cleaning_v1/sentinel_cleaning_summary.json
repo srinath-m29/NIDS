@@ -1,0 +1,102 @@
+{
+  "stage": "Stage 2B - Provisional Sentinel Cleaning",
+  "status": "PASS",
+  "source_directory": "C:\\Projects\\NIDS\\data\\processed\\label_prepared_v1",
+  "output_directory": "C:\\Projects\\NIDS\\data\\processed\\feature_cleaned_v1",
+  "total_rows": 2830743,
+  "files_processed": 8,
+  "rule": "Exact -1 in Init_Win_bytes_forward and Init_Win_bytes_backward converted to blank.",
+  "rule_status": "PROVISIONAL; semantics require further review",
+  "converted_by_feature": {
+    "Init_Win_bytes_forward": 1001189,
+    "Init_Win_bytes_backward": 1441552
+  },
+  "total_cells_converted": 2442741,
+  "other_negative_values_modified": 0,
+  "rows_deleted": 0,
+  "labels_or_provenance_modified": false,
+  "source_hashes_unchanged": true,
+  "files": [
+    {
+      "source_file": "Friday-WorkingHours-Afternoon-DDos.pcap_ISCX.labelprep.csv",
+      "output_file": "Friday-WorkingHours-Afternoon-DDos.pcap_ISCX.featureclean.csv",
+      "rows": 225745,
+      "converted_minus_one": {
+        "Init_Win_bytes_forward": 32925,
+        "Init_Win_bytes_backward": 88299
+      },
+      "output_sha256": "f19d10338947c37c0c863a3ca7fca3e2c99429787775a1c9421caf85d2e633f6"
+    },
+    {
+      "source_file": "Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.labelprep.csv",
+      "output_file": "Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.featureclean.csv",
+      "rows": 286467,
+      "converted_minus_one": {
+        "Init_Win_bytes_forward": 60210,
+        "Init_Win_bytes_backward": 76942
+      },
+      "output_sha256": "866159ae5d3a36bb2cb59ce96b14053d95d26ec8d979104e1f6faf3a4137aa35"
+    },
+    {
+      "source_file": "Friday-WorkingHours-Morning.pcap_ISCX.labelprep.csv",
+      "output_file": "Friday-WorkingHours-Morning.pcap_ISCX.featureclean.csv",
+      "rows": 191033,
+      "converted_minus_one": {
+        "Init_Win_bytes_forward": 95834,
+        "Init_Win_bytes_backward": 118419
+      },
+      "output_sha256": "0e74645787a8d83a391a495fb62b5ca205ca4f0a3b1341b3ceee748fc074cfac"
+    },
+    {
+      "source_file": "Monday-WorkingHours.pcap_ISCX.labelprep.csv",
+      "output_file": "Monday-WorkingHours.pcap_ISCX.featureclean.csv",
+      "rows": 529918,
+      "converted_minus_one": {
+        "Init_Win_bytes_forward": 224495,
+        "Init_Win_bytes_backward": 299094
+      },
+      "output_sha256": "a2627b0b590b433bdf037ef181b78d8302aebedecb1b6407e250185f612e9cbb"
+    },
+    {
+      "source_file": "Thursday-WorkingHours-Afternoon-Infilteration.pcap_ISCX.labelprep.csv",
+      "output_file": "Thursday-WorkingHours-Afternoon-Infilteration.pcap_ISCX.featureclean.csv",
+      "rows": 288602,
+      "converted_minus_one": {
+        "Init_Win_bytes_forward": 102433,
+        "Init_Win_bytes_backward": 164351
+      },
+      "output_sha256": "b949b70439b5114c9c2eaca274687f5ab4519a3a1dd93b88027e869c23af2e2c"
+    },
+    {
+      "source_file": "Thursday-WorkingHours-Morning-WebAttacks.pcap_ISCX.labelprep.csv",
+      "output_file": "Thursday-WorkingHours-Morning-WebAttacks.pcap_ISCX.featureclean.csv",
+      "rows": 170366,
+      "converted_minus_one": {
+        "Init_Win_bytes_forward": 81911,
+        "Init_Win_bytes_backward": 102373
+      },
+      "output_sha256": "2f7864d2c5f1be09923f2dd8ecff079605c5c81b6067186630059820223750b9"
+    },
+    {
+      "source_file": "Tuesday-WorkingHours.pcap_ISCX.labelprep.csv",
+      "output_file": "Tuesday-WorkingHours.pcap_ISCX.featureclean.csv",
+      "rows": 445909,
+      "converted_minus_one": {
+        "Init_Win_bytes_forward": 200128,
+        "Init_Win_bytes_backward": 256599
+      },
+      "output_sha256": "b8f6967cd12a2a5a74c8ca1b14ca7eee28bfef19eaa5af47e9ce2a7eb0fe93e6"
+    },
+    {
+      "source_file": "Wednesday-workingHours.pcap_ISCX.labelprep.csv",
+      "output_file": "Wednesday-workingHours.pcap_ISCX.featureclean.csv",
+      "rows": 692703,
+      "converted_minus_one": {
+        "Init_Win_bytes_forward": 203253,
+        "Init_Win_bytes_backward": 335475
+      },
+      "output_sha256": "b215affd33e773ebaf685235b333714f0a340e82fbf6780635d7f1927c334b8b"
+    }
+  ],
+  "errors": []
+}

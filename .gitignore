@@ -1,0 +1,76 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual Environments
+.venv/
+venv/
+ENV/
+env/
+env.bak/
+venv.bak/
+
+# Test, coverage, and linting
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+.coverage.*
+htmlcov/
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+
+# IDE and Editor configs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Operating System Files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+.DS_Store
+
+# Local Environment and Logs
+.env
+.env.*
+*.log
+
+# NIDS Application Runtime and Generated Test Artifacts
+# Note: Preserve app_v2/data/nids.sqlite and baseline backup!
+app_v2/data/test/*.sqlite
+app_v2/data/test/*.sqlite-wal
+app_v2/data/test/*.sqlite-shm
+app_v2/data/test/live_batches/*.csv
+*.sqlite-wal
+*.sqlite-shm
+app_v2/static/*.bak*

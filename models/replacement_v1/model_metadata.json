@@ -1,0 +1,36 @@
+{
+  "model_version": "replacement_v1",
+  "algorithm": "XGBoost XGBClassifier",
+  "xgboost_version": "3.4.1",
+  "training_rows": 2830743,
+  "feature_count": 63,
+  "class_count": 15,
+  "classes": [
+    "BENIGN",
+    "Bot",
+    "DDoS",
+    "DoS GoldenEye",
+    "DoS Hulk",
+    "DoS Slowhttptest",
+    "DoS slowloris",
+    "FTP-Patator",
+    "Heartbleed",
+    "Infiltration",
+    "PortScan",
+    "SSH-Patator",
+    "Web Attack � Brute Force",
+    "Web Attack � Sql Injection",
+    "Web Attack � XSS"
+  ],
+  "training_seconds": 52.45,
+  "device_requested": "cuda",
+  "evaluation_performed": false,
+  "cross_validation_performed": false,
+  "training_scope": "All usable rows in the prepared CSV files; no holdout evaluation.",
+  "limitations": [
+    "No independent performance evaluation was run.",
+    "Reported historical metrics are not results for this replacement model.",
+    "Training on all prepared rows means this model has no untouched test set.",
+    "Dataset replay only; not live packet capture or automatic blocking."
+  ]
+}
